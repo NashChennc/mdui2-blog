@@ -1,12 +1,12 @@
 <!-- 全宽 Banner -->
 <%- partial('partial/banner') %>
 
-<div class="page-shell mdui-container">
-    <div class="page-grid mdui-p-t-1 mdui-p-b-1<%= page.toc === false ? ' page-grid--single' : '' %>">
+<div class="page-shell app-container">
+    <div class="page-grid page-grid--post<%= page.toc === false ? ' page-grid--single' : '' %>">
         <!-- 文章内容 -->
 
-        <main class="page-main mdui-p-t-1 mdui-p-b-4">
-            <mdui-card variant="elevated" class="post-page-card">
+        <main class="page-main page-main--post">
+            <mdui-card variant="filled" class="post-page-card">
                 <div class="post-page-card__header">
                     <h1 class="post-page__title note-card-title"><%- page.blog_title || page.title %></h1>
                     <div class="post-page__meta-row">
@@ -31,8 +31,8 @@
             </mdui-card>
         </main>
         <% if (page.toc !== false) { %>
-        <aside class="page-sidebar mdui-p-t-1 mdui-p-b-4 sticky-sidebar" id="post-sidebar">
-            <mdui-card variant="elevated" class="post-toc-card toc-full-height">
+        <aside class="page-sidebar page-sidebar--post sticky-sidebar" id="post-sidebar">
+            <mdui-card variant="filled" class="post-toc-card toc-full-height">
                 <div class="post-toc-inner">
                     <div class="post-toc__title"><%= __('toc') %></div>
                     <div class="post-toc-scroll mdui-prose">

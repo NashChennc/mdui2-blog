@@ -25,7 +25,7 @@
       ? 'eager'
       : 'lazy';
 %>
-<mdui-card clickable variant="elevated" href="<%- url_for(post.path) %>" class="note-card">
+<mdui-card clickable variant="filled" href="<%- url_for(post.path) %>" class="note-card">
   <% if (coverImageUrl) { %>
   <img src="<%= coverImageUrl %>" class="note-cover" alt="<%= post.title %>" loading="<%= coverLoading %>">
   <% } else { %>

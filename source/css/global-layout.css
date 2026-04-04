@@ -1,36 +1,35 @@
 /* ============================================
  * 全局样式（无法用 MDUI 类替代的部分）
  * ============================================ */
-/* 系统 UI + 中文无衬线：比纯 Material/Roboto 默认更克制、阅读感更稳 */
+html {
+  font-family: var(--app-font-stack);
+  scroll-padding-top: var(--app-top-bar-offset);
+  /* scroll-behavior: smooth; 已移除，防止首页自动下滑 */
+}
+
 body#top {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: inherit;
   text-rendering: optimizeLegibility;
 }
 
 .mdui-prose {
   font-family: inherit;
-}
 
-html {
-  scroll-padding-top: var(--app-top-bar-offset);
-  /* scroll-behavior: smooth; 已移除，防止首页自动下滑 */
-}
+  /* 链接换行（MDUI 未提供） */
+  & a {
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
 
-/* 链接换行处理（MDUI 没有提供此功能） */
-.mdui-prose a {
-  word-break: break-all;
-  overflow-wrap: break-word;
-}
-
-/* 覆盖 MDUI 的 border-bottom 式「下划线」，改为 text-underline 并减小 offset，更贴近字形 */
-.mdui-prose a:hover,
-.mdui-prose a:focus {
-  border-bottom: none;
-  text-decoration: underline;
-  text-decoration-color: rgb(var(--mdui-color-primary));
-  text-underline-offset: 0.08em;
-  text-decoration-thickness: 0.0625rem;
+  /* 覆盖 MDUI border-bottom 式下划线，改为 text-underline */
+  & a:hover,
+  & a:focus {
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--mdui-color-primary));
+    text-underline-offset: 0.08em;
+    text-decoration-thickness: 0.0625rem;
+  }
 }
 
 /* 横向一排的 mdui-prose 链接（顶栏分类等）：复用 mdui.css 里 .mdui-prose a，仅补布局与不断词 */
@@ -65,10 +64,10 @@ img {
 }
 
 /* ============================================
- * 页面版心与两栏 Grid（MDUI 2 核心包不含 v1 .mdui-container）
+ * 页面版心与两栏 Grid（主题自有 .app-container，避免占用 .mdui-* 命名空间）
  * ============================================ */
-.mdui-container,
-.mdui-container-fluid {
+.app-container,
+.app-container-fluid {
   box-sizing: border-box;
   margin-right: auto;
   margin-left: auto;
@@ -76,28 +75,55 @@ img {
   padding-left: 8px;
 }
 
-.mdui-container::after,
-.mdui-container-fluid::after {
+.app-container::after,
+.app-container-fluid::after {
   display: table;
   clear: both;
   content: '';
 }
 
-.mdui-container {
+.app-container {
   width: 96%;
   max-width: 1280px;
 }
 
 @media (min-width: 600px) {
-  .mdui-container {
+  .app-container {
     width: 94%;
   }
 }
 
 @media (min-width: 1024px) {
-  .mdui-container {
+  .app-container {
     width: 92%;
   }
+}
+
+/* 原无效 mdui-p-* 的等价间距（8px 基准，与常见 MD 网格对齐） */
+.page-shell--pad-index {
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.page-shell--pad-list {
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.page-shell--pad-static-page {
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
+}
+
+.page-grid--post {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.page-main--post,
+.page-sidebar--post {
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
 }
 
 .page-grid {

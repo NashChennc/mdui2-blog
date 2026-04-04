@@ -235,7 +235,7 @@
   width: 100%;
 }
 
-.banner-inner .mdui-container {
+.banner-inner .app-container {
   display: flex;
   justify-content: flex-end;
   padding-top: 0.5rem;

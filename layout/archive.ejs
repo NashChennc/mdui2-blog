@@ -1,4 +1,4 @@
-<div class="page-shell mdui-container mdui-p-t-3 mdui-p-b-5">
+<div class="page-shell app-container page-shell--pad-list">
     <div class="page-grid page-grid--single">
         <main class="page-main">
             <div class="archives-categories">
@@ -9,7 +9,7 @@
                 <div class="archives-category-stack">
                     <% site.categories.sort('name').each(function(item){ %>
                         <% if(item.posts.length){ %>
-                    <mdui-card variant="elevated" class="archives-category-card">
+                    <mdui-card variant="filled" class="archives-category-card">
                         <div class="archives-category-card__head">
                             <span class="archives-category-card__name"><%= item.name %></span>
                             <span class="archives-category-card__count"><%= item.posts.length %> <%= __('posts_count') %></span>

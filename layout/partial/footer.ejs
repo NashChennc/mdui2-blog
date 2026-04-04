@@ -6,7 +6,7 @@
 <% var socialIntroRaw = foot.social_intro; %>
 <% var socialIntro = (socialIntroRaw !== undefined && socialIntroRaw !== null && String(socialIntroRaw).trim() !== '') ? String(socialIntroRaw).trim() : __('footer_social_intro'); %>
 <footer class="site-footer">
-  <div class="mdui-container site-footer__container">
+  <div class="app-container site-footer__container">
     <% if (showSocial) { %>
     <div class="site-footer__social-wrap">
       <% if (socialIntro) { %>
