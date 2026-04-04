@@ -26,14 +26,61 @@
 }
 
 .index-taxonomy__tags-panel {
+  margin: 0;
+  padding: 0;
+}
+
+/* 首屏 chip 与「显示更多」同一 flex 行内顺序排列，summary 贴在标签序列尾部 */
+.index-taxonomy__tags-flow {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.index-taxonomy__chips--in-flow {
+  display: contents;
 }
 
 .index-taxonomy__tags-details {
   margin: 0;
   padding: 0;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.index-taxonomy__tags-details[open] {
+  flex: 1 1 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* 溢出标签 + 「收起」同属可折叠块，挤压时一并消失，避免 summary 留高导致下方跳动 */
+.index-taxonomy__tags-overflow-sleeve {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.index-taxonomy__tags-overflow-sleeve > .index-taxonomy__chips--overflow {
+  width: 100%;
+  padding-bottom: 0.25rem;
+}
+
+/* 脚本增强：展开时由 sleeve 内按钮收起，隐藏 summary，避免与内部「收起」重复 */
+.index-taxonomy__tags-details--js[open] > .index-taxonomy__tags-summary {
+  display: none;
+}
+
+/* 无 JS / 减少动效：仍用原生 summary 切换，隐藏 sleeve 内重复按钮 */
+.index-taxonomy__tags-details:not(.index-taxonomy__tags-details--js) .index-taxonomy__tags-less {
+  display: none;
 }
 
 .index-taxonomy__tags-summary {
@@ -81,8 +128,38 @@
   outline-offset: 2px;
 }
 
-.index-taxonomy__tags-details[open] > .index-taxonomy__chips {
-  padding-bottom: 0.25rem;
+.index-taxonomy__tags-less {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.375rem 0.75rem;
+  min-height: calc(var(--mdui-typescale-label-large-line-height, 1.25rem) + 0.75rem);
+  border-radius: var(--mdui-shape-corner-large, 1rem);
+  font: inherit;
+  font-size: var(--mdui-typescale-label-large-size, 0.875rem);
+  line-height: var(--mdui-typescale-label-large-line-height, 1.25rem);
+  font-weight: 500;
+  cursor: pointer;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  background-color: rgb(var(--mdui-color-surface-container-low));
+  border: 1px dashed color-mix(in srgb, rgb(var(--mdui-color-outline)) 40%, transparent);
+}
+
+.index-taxonomy__tags-less:hover,
+.index-taxonomy__tags-less:focus {
+  outline: none;
+  color: rgb(var(--mdui-color-primary));
+  background-color: color-mix(in srgb, rgb(var(--mdui-color-primary)) 8%, rgb(var(--mdui-color-surface-container-low)));
+  border-color: color-mix(in srgb, rgb(var(--mdui-color-primary)) 28%, transparent);
+}
+
+.index-taxonomy__tags-less:focus-visible {
+  outline: 2px solid rgb(var(--mdui-color-primary));
+  outline-offset: 2px;
 }
 
 .index-taxonomy__chip {
