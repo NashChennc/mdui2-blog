@@ -5,6 +5,8 @@ search_no_results: 没有匹配的文章
 search_aria_input: 搜索文章
 index_taxonomy_nav: 分类与标签
 tags: 标签
+tags_show_more: 还有 %d 个标签
+tags_show_less: 收起标签
 tagcloud: 标签云
 tweets: 推文
 prev: 上一页

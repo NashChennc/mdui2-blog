@@ -5,6 +5,8 @@ search_no_results: Keine passenden Beiträge
 search_aria_input: Beiträge durchsuchen
 index_taxonomy_nav: Kategorien und Tags
 tags: Tags
+tags_show_more: "%d weitere Tags anzeigen"
+tags_show_less: Weniger anzeigen
 tagcloud: Tag Cloud
 tweets: Tweets
 prev: zurück

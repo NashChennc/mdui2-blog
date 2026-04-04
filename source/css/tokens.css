@@ -23,6 +23,13 @@
   --post-toc-viewport-bottom: 1rem;
   --post-content-pad: clamp(1.25rem, 5vw, 2rem);
 
+  /* 版心左右 gutter（原 8px）；与 .app-container 共用 */
+  --app-container-gutter: 0.5rem;
+  /* 窄屏下侧栏相对主栏下移的间距（原 16px）；≥ --app-breakpoint-sidebar 时与主栏顶对齐 */
+  --app-sidebar-stack-gap: 1rem;
+  /* 侧栏与主栏并排断点：小于此值时 #sidebar-wrapper 保留顶距。global-layout 内 @media 须写死 992px（var() 在 MQ 中不可靠） */
+  --app-breakpoint-sidebar: 992px;
+
   /* 文章 + 目录两栏：固定最大正文栏与固定目录栏，避免大图撑开 grid 挤占 TOC */
   --page-article-column-max-width: 56rem;
   --page-toc-column-width: 15.5rem;

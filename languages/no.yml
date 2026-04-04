@@ -5,6 +5,8 @@ search_no_results: Ingen treff
 search_aria_input: Søk i innlegg
 index_taxonomy_nav: Kategorier og stikkord
 tags: Tags
+tags_show_more: Vis %d flere stikkord
+tags_show_less: Vis færre
 tagcloud: Tag Cloud
 tweets: Tweets
 prev: Forrige

@@ -5,6 +5,8 @@ search_no_results: Ничего не найдено
 search_aria_input: Поиск по записям
 index_taxonomy_nav: Категории и метки
 tags: Метки
+tags_show_more: Показать ещё %d меток
+tags_show_less: Свернуть
 tagcloud: Облако меток
 tweets: Твиты
 prev: Назад

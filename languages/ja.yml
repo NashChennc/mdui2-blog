@@ -5,6 +5,8 @@ search_no_results: 該当する記事がありません
 search_aria_input: 記事を検索
 index_taxonomy_nav: カテゴリとタグ
 tags: タグ
+tags_show_more: あと %d 件のタグ
+tags_show_less: タグを閉じる
 tagcloud: タグクラウド
 tweets: ツイート
 prev: 戻る

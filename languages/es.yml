@@ -5,6 +5,8 @@ search_no_results: No hay entradas coincidentes
 search_aria_input: Buscar entradas
 index_taxonomy_nav: Categorías y etiquetas
 tags: Tags
+tags_show_more: Mostrar %d etiquetas más
+tags_show_less: Mostrar menos
 tagcloud: Nube de Tags
 tweets: Tweets
 prev: Previo

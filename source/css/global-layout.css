@@ -9,11 +9,15 @@ html {
 
 body#top {
   font-family: inherit;
-  text-rendering: optimizeLegibility;
 }
 
 .mdui-prose {
   font-family: inherit;
+
+  /* 长文不在 body 上开 optimizeLegibility；仅标题保留字距/连字观感 */
+  & :is(h1, h2, h3) {
+    text-rendering: optimizeLegibility;
+  }
 
   /* 链接换行（MDUI 未提供） */
   & a {
@@ -71,8 +75,8 @@ img {
   box-sizing: border-box;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 8px;
-  padding-left: 8px;
+  padding-right: var(--app-container-gutter);
+  padding-left: var(--app-container-gutter);
 }
 
 .app-container::after,
@@ -87,6 +91,7 @@ img {
   max-width: 1280px;
 }
 
+/* 字面量 px：@media 内 var() 在部分引擎无效，会导致整段查询被丢弃（文章与 TOC 无法并排） */
 @media (min-width: 600px) {
   .app-container {
     width: 94%;
@@ -99,7 +104,7 @@ img {
   }
 }
 
-/* 原无效 mdui-p-* 的等价间距（8px 基准，与常见 MD 网格对齐） */
+/* 原无效 mdui-p-* 的等价间距（版心 gutter 见 --app-container-gutter） */
 .page-shell--pad-index {
   padding-top: 2rem;
   padding-bottom: 2.5rem;
@@ -133,7 +138,7 @@ img {
 }
 
 @media (min-width: 840px) {
-  /* minmax(0, …) 避免子项 min-content（如超宽图）撑开整列 */
+  /* minmax(0, …) 避免子项 min-content（如超宽图）撑开整列；840px 与 MDUI --mdui-breakpoint-md 一致 */
   .page-grid:not(.page-grid--single) {
     grid-template-columns:
       minmax(0, var(--page-article-column-max-width))
@@ -167,10 +172,11 @@ img {
 
 /* 侧边栏包装器响应式 */
 #sidebar-wrapper {
-  margin-top: 16px;
+  margin-top: var(--app-sidebar-stack-gap);
 }
 
 @media (min-width: 992px) {
+  /* 与 tokens --app-breakpoint-sidebar 一致；此处不用 var()，原因同上文 */
   #sidebar-wrapper {
     margin-top: 0;
   }

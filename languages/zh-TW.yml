@@ -5,6 +5,8 @@ search_no_results: 沒有符合的文章
 search_aria_input: 搜尋文章
 index_taxonomy_nav: 分類與標籤
 tags: 標籤
+tags_show_more: 還有 %d 個標籤
+tags_show_less: 收起標籤
 tagcloud: 標籤雲
 tweets: 推文
 prev: 上一頁

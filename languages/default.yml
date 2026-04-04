@@ -5,6 +5,8 @@ search_no_results: No matching posts
 search_aria_input: Search posts
 index_taxonomy_nav: Categories and tags
 tags: Tags
+tags_show_more: Show %d more tags
+tags_show_less: Show fewer tags
 tagcloud: Tag Cloud
 tweets: Tweets
 prev: Prev

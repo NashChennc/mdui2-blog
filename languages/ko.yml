@@ -5,6 +5,8 @@ search_no_results: 일치하는 글이 없습니다
 search_aria_input: 글 검색
 index_taxonomy_nav: 분류 및 태그
 tags: 태그
+tags_show_more: 태그 %d개 더 보기
+tags_show_less: 태그 접기
 tagcloud: 태그 클라우드
 tweets: 트윗
 prev: 이전

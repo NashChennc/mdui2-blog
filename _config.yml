@@ -215,6 +215,10 @@ widgets:
 #- archive
 #- recent_posts
 
+# 首页 / 列表页顶部分类·标签芯片：标签超过此数量时折叠，点「展开」再显示其余（0 = 始终全部展示）
+index_taxonomy:
+  tags_visible_initial: 10
+
 # 索引页小部件配置（当前未使用）
 index_widgets:
 # - category

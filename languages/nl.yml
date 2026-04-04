@@ -6,6 +6,8 @@ search_no_results: Geen overeenkomende berichten
 search_aria_input: Berichten zoeken
 index_taxonomy_nav: Categorieën en labels
 tags: Labels
+tags_show_more: Nog %d labels tonen
+tags_show_less: Minder tonen
 tagcloud: Tag Cloud
 tweets: Tweets
 prev: Vorige

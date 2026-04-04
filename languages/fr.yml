@@ -5,6 +5,8 @@ search_no_results: Aucun article correspondant
 search_aria_input: Rechercher des articles
 index_taxonomy_nav: Catégories et mots-clés
 tags: Mot-clés
+tags_show_more: Afficher %d mot-clés de plus
+tags_show_less: Afficher moins
 tagcloud: Nuage de mot-clés
 tweets: Tweets
 prev: Précédent

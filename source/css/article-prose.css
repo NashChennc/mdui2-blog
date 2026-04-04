@@ -74,7 +74,10 @@ mdui-card.post-page-card {
   border-radius: 12px;
 }
 
-/* 覆盖正文内联 style 的 width，避免撑破固定正文栏 */
+/*
+ * 内联 style 的 width/height 特异性高于类选择器，此处保留 !important 才能压过 Hexo/Markdown 输出。
+ * 代码高亮等处已改为提高特异性，勿在此处复用 !important 以外的手段。
+ */
 .post-page-card__body .mdui-prose img,
 .post-page-card__body .mdui-prose video {
   max-width: 100% !important;
@@ -89,23 +92,23 @@ mdui-card.post-page-card {
 
 .post-page-card__body .mdui-prose {
   max-width: 100%;
-}
 
-/* 文章卡片内表格：不沿用全站 max-content/min-width:100%，限制在正文栏宽内；超宽由 .post-page-card__body 横向滚动 */
-.post-page-card__body .mdui-prose > table,
-.post-page-card__body .mdui-prose figure:not(.highlight) > table {
-  width: auto;
-  max-width: 100%;
-  min-width: 0;
-  table-layout: auto;
-}
+  /* 文章卡片内表格：不沿用全站 max-content/min-width:100%，限制在正文栏宽内；超宽由 body 横向滚动 */
+  & > table,
+  & figure:not(.highlight) > table {
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+    table-layout: auto;
+  }
 
-.post-page-card__body .mdui-prose > table th,
-.post-page-card__body .mdui-prose > table td,
-.post-page-card__body .mdui-prose figure:not(.highlight) > table th,
-.post-page-card__body .mdui-prose figure:not(.highlight) > table td {
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  & > table th,
+  & > table td,
+  & figure:not(.highlight) > table th,
+  & figure:not(.highlight) > table td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
 }
 
 /* ============================================
@@ -120,68 +123,70 @@ mdui-card.post-page-card {
   -webkit-overflow-scrolling: touch;
 }
 
-.mdui-prose > table,
-.mdui-prose figure:not(.highlight) > table {
-  border-collapse: collapse;
-  /* 至少占满一行，避免窄表收缩后后续文字「贴表」或误进同一排版流 */
-  width: max-content;
-  min-width: 100%;
-  margin: 0;
-  font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
-  line-height: var(--mdui-typescale-body-medium-line-height, 1.25rem);
-  color: rgb(var(--mdui-color-on-surface));
-  border: 1px solid var(--app-divider-hairline);
-  border-radius: var(--mdui-shape-corner-small, 8px);
-  overflow: hidden;
-  background-color: rgb(var(--mdui-color-surface));
-}
+.mdui-prose {
+  & > table,
+  & figure:not(.highlight) > table {
+    border-collapse: collapse;
+    /* 至少占满一行，避免窄表收缩后后续文字「贴表」或误进同一排版流 */
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    font-size: var(--mdui-typescale-body-medium-size, 0.875rem);
+    line-height: var(--mdui-typescale-body-medium-line-height, 1.25rem);
+    color: rgb(var(--mdui-color-on-surface));
+    border: 1px solid var(--app-divider-hairline);
+    border-radius: var(--mdui-shape-corner-small, 8px);
+    overflow: hidden;
+    background-color: rgb(var(--mdui-color-surface));
+  }
 
-.mdui-prose > table {
-  margin: 1.25em 0;
-}
+  & > table {
+    margin: 1.25em 0;
+  }
 
-.mdui-prose > table caption,
-.mdui-prose figure:not(.highlight) > table caption {
-  caption-side: top;
-  padding: 0 0 0.5rem;
-  font-size: var(--mdui-typescale-body-small-size, 0.75rem);
-  line-height: var(--mdui-typescale-body-small-line-height, 1rem);
-  color: rgb(var(--mdui-color-on-surface-variant));
-  text-align: start;
-}
+  & > table caption,
+  & figure:not(.highlight) > table caption {
+    caption-side: top;
+    padding: 0 0 0.5rem;
+    font-size: var(--mdui-typescale-body-small-size, 0.75rem);
+    line-height: var(--mdui-typescale-body-small-line-height, 1rem);
+    color: rgb(var(--mdui-color-on-surface-variant));
+    text-align: start;
+  }
 
-.mdui-prose > table th,
-.mdui-prose > table td,
-.mdui-prose figure:not(.highlight) > table th,
-.mdui-prose figure:not(.highlight) > table td {
-  padding: 0.625rem 0.875rem;
-  text-align: start;
-  vertical-align: top;
-  border-bottom: 1px solid var(--app-divider-hairline);
-}
+  & > table th,
+  & > table td,
+  & figure:not(.highlight) > table th,
+  & figure:not(.highlight) > table td {
+    padding: 0.625rem 0.875rem;
+    text-align: start;
+    vertical-align: top;
+    border-bottom: 1px solid var(--app-divider-hairline);
+  }
 
-.mdui-prose > table th,
-.mdui-prose figure:not(.highlight) > table th {
-  background-color: rgb(var(--mdui-color-surface-container-high));
-  color: rgb(var(--mdui-color-on-surface));
-  font-weight: 500;
-}
+  & > table th,
+  & figure:not(.highlight) > table th {
+    background-color: rgb(var(--mdui-color-surface-container-high));
+    color: rgb(var(--mdui-color-on-surface));
+    font-weight: 500;
+  }
 
-.mdui-prose > table thead th,
-.mdui-prose figure:not(.highlight) > table thead th {
-  border-bottom-color: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 18%, transparent);
-}
+  & > table thead th,
+  & figure:not(.highlight) > table thead th {
+    border-bottom-color: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 18%, transparent);
+  }
 
-.mdui-prose > table tbody tr:last-child th,
-.mdui-prose > table tbody tr:last-child td,
-.mdui-prose figure:not(.highlight) > table tbody tr:last-child th,
-.mdui-prose figure:not(.highlight) > table tbody tr:last-child td {
-  border-bottom: none;
-}
+  & > table tbody tr:last-child th,
+  & > table tbody tr:last-child td,
+  & figure:not(.highlight) > table tbody tr:last-child th,
+  & figure:not(.highlight) > table tbody tr:last-child td {
+    border-bottom: none;
+  }
 
-.mdui-prose > table tbody tr:nth-child(even) td,
-.mdui-prose figure:not(.highlight) > table tbody tr:nth-child(even) td {
-  background-color: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 4%, transparent);
+  & > table tbody tr:nth-child(even) td,
+  & figure:not(.highlight) > table tbody tr:nth-child(even) td {
+    background-color: color-mix(in srgb, rgb(var(--mdui-color-on-surface)) 4%, transparent);
+  }
 }
 
 /* 独立 Page 模板：横向滚动放在 main，避免 .mdui-prose 成滚动容器影响表后段落 */
@@ -248,7 +253,7 @@ main.page-shell .mdui-prose.page-page__prose {
 }
 
 /* ============================================
- * 代码块适配 (Hexo highlight & mdui-prose 冲突修复)
+ * 代码块适配 (Hexo highlight & mdui-prose)：高特异性，避免 !important
  * ============================================ */
 .mdui-prose .highlight {
   overflow: auto;
@@ -262,29 +267,29 @@ main.page-shell .mdui-prose.page-page__prose {
   margin: 1.5em 0;
 }
 
-.mdui-prose figure.highlight table {
+mdui-card.post-page-card .post-page-card__body .mdui-prose figure.highlight table,
+mdui-card.post-page-card .post-page-card__body .mdui-prose .highlight table,
+main.page-shell .mdui-prose figure.highlight table,
+main.page-shell .mdui-prose .highlight table {
   margin: 0;
   display: block;
   overflow-x: auto;
-  width: auto !important;
-  border: none !important;
+  width: auto;
+  border: none;
 }
 
-.mdui-prose .highlight table {
-  width: auto !important; /* 允许表格根据代码长度伸展 */
-  margin: 0 !important;
-  border: none !important;
+mdui-card.post-page-card .post-page-card__body .mdui-prose figure.highlight td,
+mdui-card.post-page-card .post-page-card__body .mdui-prose .highlight td,
+main.page-shell .mdui-prose figure.highlight td,
+main.page-shell .mdui-prose .highlight td {
+  padding: 0;
+  border: none;
 }
 
-.mdui-prose figure.highlight td,
-.mdui-prose .highlight td {
-  padding: 0 !important;
-  border: none !important;
-}
-
-.mdui-prose .highlight pre {
-  margin: 0 !important;
-  padding: 12px 16px !important;
-  white-space: pre !important; /* 强制不换行以触发滚动条 */
-  word-break: normal !important;
+mdui-card.post-page-card .post-page-card__body .mdui-prose .highlight pre,
+main.page-shell .mdui-prose .highlight pre {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  white-space: pre;
+  word-break: normal;
 }
