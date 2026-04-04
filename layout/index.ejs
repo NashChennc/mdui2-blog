@@ -1,0 +1,77 @@
+
+<!-- 1. Hero Banner 区域 -->
+<div class="hero-banner">
+    <%
+        // 获取本地 banner 目录下的所有文件名列表
+        var bannerImageList = get_banner_list();
+        var fallbackImage = "";
+        
+        // 如果有图片，随机选一张作为首页全屏背景
+        if (bannerImageList && bannerImageList.length > 0) {
+            var randomIndex = Math.floor(Math.random() * bannerImageList.length);
+            fallbackImage = url_for('image/banner/' + bannerImageList[randomIndex]);
+        } else {
+            // 兜底图片 (如果文件夹为空)
+            fallbackImage = theme.banner.image
+        }
+    %>
+    <div class="hero-bg" style="--banner-bg-image: url(<%- theme.banner.image || config.head_bgpaper || fallbackImage %>);"></div>
+    <div class="hero-mask"></div>
+
+    <div class="hero-content hero-content--index">
+        <h1 class="hero-content__title">
+            <%- partial('partial/banner-hero-titles', { variant: 'index', role: 'title' }) %>
+        </h1>
+        <div class="hero-content__subtitle hero-content__subtitle--spaced">
+            <%- partial('partial/banner-hero-titles', { variant: 'index', role: 'subtitle' }) %>
+        </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+        <mdui-icon name="expand_more" class="hero-scroll-hint__icon"></mdui-icon>
+    </div>
+</div>
+
+<!-- 2. 主要内容区域 -->
+<div class="page-shell mdui-container mdui-p-t-4 mdui-p-b-5">
+    <div class="page-grid page-grid--single">
+        <main class="page-main">
+            <%- partial('partial/index-taxonomy') %>
+            <div class="notes-grid notes-grid--index">
+                <% page.posts.each(function(post, i){ %>
+                    <div class="notes-grid__cell scroll-reveal <%= (i === 0 && page.current === 1) ? 'featured-post' : '' %>">
+                        <%- partial('partial/category-note-card', { post: post, i: i, pageCurrent: page.current }) %>
+                    </div>
+                <% }) %>
+            </div>
+
+            <% if (page.total > 1){ %>
+                <%- partial('partial/paginator', { paginatorWrapClass: 'scroll-reveal' }) %>
+            <% } %>
+        </main>
+    </div>
+</div>
+<div id="page-bottom" aria-hidden="true"></div>
+
+<!-- 3. 简单的滚动显现脚本 -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('is-visible');
+                }, index * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+});
+</script>

@@ -1,0 +1,47 @@
+<!-- 全宽 Banner -->
+<%- partial('partial/banner') %>
+
+<div class="page-shell mdui-container">
+    <div class="page-grid mdui-p-t-1 mdui-p-b-1<%= page.toc === false ? ' page-grid--single' : '' %>">
+        <!-- 文章内容 -->
+
+        <main class="page-main mdui-p-t-1 mdui-p-b-4">
+            <mdui-card variant="elevated" class="post-page-card">
+                <div class="post-page-card__header">
+                    <h1 class="post-page__title note-card-title"><%- page.blog_title || page.title %></h1>
+                    <div class="post-page__meta-row">
+                        <span class="note-date"><%= date(page.updated, 'YYYY MMM DD') %></span>
+                        <% if (page.categories && page.categories.length) { %>
+                            <div class="post-page__meta--cats">
+                                <% page.categories.each(cat => { %>
+                                    <a href="<%- url_for(cat.path) %>" class="note-tag"><%- cat.name %></a>
+                                <% }) %>
+                            </div>
+                        <% } %>
+                        <span class="note-read"><%= min2read(page.content, { cn: 200, en: 500 }) %> <%= __('min_read') %></span>
+                    </div>
+                    <mdui-divider></mdui-divider>
+                </div>
+                <div class="post-page-card__body">
+                    <div class="mdui-prose">
+                        <%- page.content %>
+                    </div>
+                </div>
+                <%- partial('partial/link') %>
+            </mdui-card>
+        </main>
+        <% if (page.toc !== false) { %>
+        <aside class="page-sidebar mdui-p-t-1 mdui-p-b-4 sticky-sidebar" id="post-sidebar">
+            <mdui-card variant="elevated" class="post-toc-card toc-full-height">
+                <div class="post-toc-inner">
+                    <div class="post-toc__title"><%= __('toc') %></div>
+                    <div class="post-toc-scroll mdui-prose">
+                        <%- toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 }) %>
+                    </div>
+                </div>
+            </mdui-card>
+        </aside>
+        <% } %>
+    </div>
+</div>
+<div id="page-bottom" aria-hidden="true"></div>

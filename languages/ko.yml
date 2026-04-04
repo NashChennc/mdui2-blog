@@ -1,0 +1,61 @@
+categories: 카테고리
+search: 검색
+search_placeholder: 글 검색…
+search_no_results: 일치하는 글이 없습니다
+search_aria_input: 글 검색
+index_taxonomy_nav: 분류 및 태그
+tags: 태그
+tagcloud: 태그 클라우드
+tweets: 트윗
+prev: 이전
+next: 다음
+comment: 댓글
+archive_a: 아카이브
+archive_b: "아카이브: %s"
+page: 페이지 %d
+recent_posts: 최근 포스트
+newer: 최신
+older: 이전
+share: 공유
+powered_by: Powered by
+rss_feed: RSS Feed
+footer_subscribe_title: 업데이트를 받아보시겠어요?
+footer_nav_aria: 바닥글 탐색
+footer_social_intro: Bored? Come chat for a bit.
+category: 카테고리
+tag: 태그
+home: 홈
+about: 소개
+toc: 목차
+last_update: 마지막 업데이트
+uncategorized: 미분류
+min_read: 분 읽기
+read_full_article: 전체 기사 읽기
+articles: 기사
+current_category: 현재 카테고리
+view_all_categories: 모든 카테고리 보기
+prev_post: 이전
+next_post: 다음
+word_count: 단어 수
+reading_time: 예상 읽기 시간
+completed: 완료
+goto_archive: 아카이브로 이동
+goto_top: 위로 이동
+goto_bottom: 아래로 이동
+welcome: 내 블로그에 오신 것을 환영합니다
+posts_count: 게시물
+invalid_folder_name: 잘못된 폴더 이름
+folder_not_found: "폴더를 찾을 수 없습니다: source/%s"
+read_dir_failed: 디렉토리 읽기 실패
+no_files: 사용 가능한 파일이 없습니다.
+page_not_created: 페이지가 생성되지 않음
+topbar_profile_open: 작성자 프로필 및 소셜 링크 열기
+topbar_social_links: 소셜 링크
+theme_toggle_to_dark: 어두운 모드로 전환
+theme_toggle_to_light: 밝은 모드로 전환
+theme_toggle_follow_system: 시스템 테마 사용(Shift+클릭으로 복원)
+default_site_title: 내 블로그
+default_site_subtitle: 간단하고 깔끔한 블로그
+default_author: 작성자
+category_page_default_lede: ""
+tag_page_default_lede: ""

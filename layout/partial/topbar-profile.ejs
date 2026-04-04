@@ -1,0 +1,70 @@
+<div class="topbar-profile-cluster">
+  <mdui-dropdown
+    class="topbar-profile-dropdown"
+    trigger="hover click focus"
+    placement="bottom-end"
+    open-delay="180"
+    close-delay="280"
+  >
+    <mdui-button-icon
+      slot="trigger"
+      variant="standard"
+      class="topbar-profile-trigger-btn"
+      aria-haspopup="true"
+      aria-label="<%- __('topbar_profile_open') %>"
+    >
+      <% if (theme.sidebar_config.avatar || theme.avatar) { %>
+        <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="topbar-profile-trigger__avatar" alt="" width="40" height="40" decoding="async">
+      <% } else { %>
+        <mdui-icon name="person" class="topbar-profile-trigger__avatar-icon"></mdui-icon>
+      <% } %>
+    </mdui-button-icon>
+
+    <mdui-card variant="elevated" class="sidebar-card topbar-profile-panel">
+      <div class="sidebar-card-media">
+        <img src="<%- theme.sidebar_config.image || theme.banner.image %>" class="sidebar-card-media__img" alt="">
+      </div>
+
+      <div class="sidebar-card-content--main sidebar-card-body">
+        <% if (theme.sidebar_config.avatar || theme.avatar) { %>
+          <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="sidebar-avatar-offset sidebar-avatar" alt="<%= config.author || config.title %>">
+        <% } else { %>
+          <div class="sidebar-avatar-offset sidebar-avatar sidebar-avatar--placeholder">
+            <mdui-icon name="person" class="sidebar-avatar__icon"></mdui-icon>
+          </div>
+        <% } %>
+
+        <div class="sidebar-author"><%= config.author %></div>
+        <div class="sidebar-bio">
+          <%= theme.sidebar_config.description || config.description || __('welcome') %>
+        </div>
+        <div class="topbar-profile-about-wrap">
+          <mdui-button
+            variant="text"
+            href="<%- url_for('/about') %>"
+            class="topbar-profile-about"
+            <% if (typeof page !== 'undefined' && page.path && /^about(\/|$)/.test(page.path)) { %>aria-current="page"<% } %>
+          ><%= __('about') %></mdui-button>
+        </div>
+      </div>
+    </mdui-card>
+  </mdui-dropdown>
+
+  <% if (theme.social) { %>
+    <nav class="topbar-profile-social-bar" aria-label="<%= __('topbar_social_links') %>">
+      <% for (var k in theme.social) { %>
+        <mdui-button-icon
+          class="topbar-profile-social-bar__btn"
+          variant="standard"
+          href="<%- url_for(theme.social[k].link) %>"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="<%- theme.social[k].text || theme.social[k].link %>"
+          aria-label="<%- theme.social[k].text || theme.social[k].link %>"
+        >
+          <i class="<%- theme.social[k].icon %> <%- theme.social[k].color %> topbar-profile-social-bar__icon" aria-hidden="true"></i>
+        </mdui-button-icon>
+      <% } %>
+    </nav>
+  <% } %>
+</div>

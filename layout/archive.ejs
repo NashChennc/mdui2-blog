@@ -1,0 +1,32 @@
+<div class="page-shell mdui-container mdui-p-t-3 mdui-p-b-5">
+    <div class="page-grid page-grid--single">
+        <main class="page-main">
+            <div class="archives-categories">
+                <header class="notes-header">
+                    <h1 class="notes-title"><%= __('categories') %></h1>
+                </header>
+                <% if (site.categories.length){ %>
+                <div class="archives-category-stack">
+                    <% site.categories.sort('name').each(function(item){ %>
+                        <% if(item.posts.length){ %>
+                    <mdui-card variant="elevated" class="archives-category-card">
+                        <div class="archives-category-card__head">
+                            <span class="archives-category-card__name"><%= item.name %></span>
+                            <span class="archives-category-card__count"><%= item.posts.length %> <%= __('posts_count') %></span>
+                        </div>
+                        <mdui-divider></mdui-divider>
+                        <mdui-list class="archives-category-card__list">
+                            <% item.posts.sort('title').each(function(post){ %>
+                            <mdui-list-item rounded href="<%- url_for(post.path) %>" headline-line="2" end-icon="arrow_forward" headline="<%= post.title %>"></mdui-list-item>
+                            <% }) %>
+                        </mdui-list>
+                    </mdui-card>
+                        <% } %>
+                    <% }); %>
+                </div>
+                <% } %>
+            </div>
+        </main>
+    </div>
+</div>
+<div id="page-bottom" aria-hidden="true"></div>

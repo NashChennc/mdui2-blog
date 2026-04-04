@@ -1,0 +1,61 @@
+categories: Категории
+search: Поиск
+search_placeholder: Поиск по записям…
+search_no_results: Ничего не найдено
+search_aria_input: Поиск по записям
+index_taxonomy_nav: Категории и метки
+tags: Метки
+tagcloud: Облако меток
+tweets: Твиты
+prev: Назад
+next: Вперед
+comment: Комментарии
+archive_a: Архив
+archive_b: "Архив: %s"
+page: Страница %d
+recent_posts: Недавние записи
+newer: Следующий
+older: Предыдущий
+share: Поделиться
+powered_by: Создано с помощью
+rss_feed: RSS-каналы
+footer_subscribe_title: Хотите быть в курсе?
+footer_nav_aria: Навигация в подвале
+footer_social_intro: Bored? Come chat for a bit.
+category: Категория
+tag: Метка
+home: Главная
+about: О нас
+toc: Содержание
+last_update: Последнее обновление
+uncategorized: Без категории
+min_read: мин чтения
+read_full_article: Прочитать полную статью
+articles: статей
+current_category: Текущая категория
+view_all_categories: Просмотреть все категории
+prev_post: Предыдущий
+next_post: Следующий
+word_count: Количество слов
+reading_time: Примерное время чтения
+completed: Завершено
+goto_archive: перейти в Архив
+goto_top: перейти вверх
+goto_bottom: перейти вниз
+welcome: Добро пожаловать в мой блог
+posts_count: записей
+invalid_folder_name: Неверное имя папки
+folder_not_found: "Папка не найдена: source/%s"
+read_dir_failed: Не удалось прочитать каталог
+no_files: Нет доступных файлов.
+page_not_created: Страница не создана
+topbar_profile_open: Открыть профиль автора и соцсети
+topbar_social_links: Соцсети
+theme_toggle_to_dark: Переключить на тёмную тему
+theme_toggle_to_light: Переключить на светлую тему
+theme_toggle_follow_system: Системная тема (Shift+клик — сброс)
+default_site_title: Мой Блог
+default_site_subtitle: Простой и чистый блог
+default_author: Автор
+category_page_default_lede: ""
+tag_page_default_lede: ""

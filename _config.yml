@@ -1,0 +1,271 @@
+# ============================================
+# mdblog 主题配置文件
+# ============================================
+# 配置文件位置: themes/mdblog/_config.yml
+# 
+# 配置优先级说明：
+# 1. 主题配置 (theme.xxx) - 最高优先级
+# 2. 站点配置 (config.xxx) - 次优先级  
+# 3. i18n文本 (__('key')) - 用于界面文本
+# 4. 硬编码默认值 - 最后兜底
+# ============================================
+
+# ============================================
+# 一、Banner 配置（首页及分类页顶部横幅）
+# ============================================
+# 显示优先级（由 partial 实现）：
+# - 首页主标题：title_index_rows → 否则 config.title
+# - 内页主标题：title_inner_columns → 否则 config.title
+# - 副标题：subtitle_block（cite_upper / cite_lower / aside）→ 否则 config.subtitle
+# 文案均为纯文本，版式由 layout/partial/banner-hero-titles.ejs + banner-page.css 负责；
+# 内页多列挤碰、换行、对齐等由 source/js/banner-title-layout.json + banner-title-layout.js 调整（可站点 source/js/ 覆盖）
+# ============================================
+banner:
+  enable: true
+  image: /image/banner.jpeg
+
+  # 首页主标题：多行，每行为「列」数组；每列 upper=小字（法语）/ lower=大字（中文）
+  title_index_rows:
+    -
+      - { upper: "NOUS SOMMES", lower: "我们是" }
+      - { upper: "DES ENFANTS", lower: "孩子"}
+      - { lower: "，" }
+    -
+      - { upper: "MAIS", lower: "但" }
+      - { upper: "DES ENFANTS", lower: "我们" }
+      - { upper: "PROGRESSIFS", lower: "精力充沛"}
+      - { lower: "，" }
+    -
+      - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前"}
+      - { lower: "。" }
+
+  # 分类/文章顶栏：单行横向，列结构与首页语义一致
+  title_inner_columns:
+    - { upper: "NOUS SOMMES", lower: "我们是" }
+    - { upper: "DES ENFANTS", lower: "孩子"}
+    - { lower: "，" }
+    - { upper: "MAIS", lower: "但" }
+    - { upper: "DES ENFANTS", lower: "我们" }
+    - { upper: "PROGRESSIFS", lower: "精力充沛"}
+    - { lower: "，" }
+    - { upper: "PLEINS DE FORCE ET DE COURAGE", lower: "勇往直前"}
+    - { lower: "。" }
+
+  subtitle_block:
+    cite_upper: "ÉVARISTE GALOIS (1811-1832)"
+    cite_lower: "埃瓦里斯特 · 伽罗瓦"
+    aside: "，1831年 于巴黎政治审判庭上的辩护"
+
+# ============================================
+# 二、侧边栏配置
+# ============================================
+# 侧边栏显示在文章页和首页右侧，包含用户信息卡片
+# ============================================
+sidebar_config:
+  # 侧边栏卡片背景图
+  # 类型: String
+  # 默认值: /image/card.png
+  # 说明: 图片应放在 source/image/ 目录下
+  image: /image/card.png
+  
+  # 头像图片路径
+  # 类型: String
+  # 默认值: /image/avatar.jpeg
+  # 说明: 如果未设置，将显示默认图标
+  # 提示: 建议使用正方形图片，会自动裁剪为圆形
+  avatar: /image/avatar.jpeg
+  
+  # 侧边栏描述（用户可定制内容）
+  # 类型: String
+  # 默认值: "" (留空则使用站点描述 config.description，再为空则使用i18n默认值)
+  # 说明: 这是用户个性化内容，不会进行国际化
+  # 优先级: theme.sidebar_config.description > config.description > __('welcome')
+  description: ""
+
+# ============================================
+# 分类索引页（categories/:name/，Notes / 数字花园式卡片网格）
+#
+# lede：全站分类页默认副标题；留空则尝试 i18n category_page_default_lede；仍空则不显示
+#
+# by_category：按「分类名」覆盖该分类页的展示（键必须与 front-matter categories 名称完全一致）
+#   class_name：页面主标题（<h1>），不填则用 Hexo 分类名 page.category
+#   class_description：该类的副标题说明（<p class="notes-subtitle">），不填则回退到 lede / i18n
+#
+# 数字花园范例（将 Notes 改成你站点上的实际分类名即可生效）：
+# ============================================
+category_page:
+  lede: ""
+  by_category:
+    笔记:
+      class_name: 笔记  Notes
+      class_description: 记录我尚未完全理解的事物。
+    散文:
+      class_name: 散文  Essays
+      class_description: 只是一些比较长的文字。
+    碎碎念:
+      class_name: 碎碎念  Ramblings
+      class_description: 突发奇想，还有突发恶疾。
+    专栏:
+      class_name: 专栏  Columns
+      class_description: 一些连续的文章。
+
+# ============================================
+# KaTeX 数学公式（主题注入的客户端渲染）
+# enable: false 时全站不加载 KaTeX，无公式页面可减小体积
+# ============================================
+katex:
+  enable: true
+
+# ============================================
+# 三、社交链接配置
+# ============================================
+# 在侧边栏底部显示社交链接图标
+# 支持多个社交平台，每个平台包含 link、icon、color 三个属性
+# ============================================
+social:
+  qq:
+    text: "695977430"
+    link: "https://qm.qq.com/q/RPs1VkX9OU"
+    icon: fa-brands fa-qq
+    color: mdui-text-color-light-blue
+  # x:
+  #   text: "Nachuan04"
+  #   link: "https://x.com/Nachuan04"
+  #   icon: fa-brands fa-x-twitter
+  #   color: mdui-text-color-black
+  github:
+    text: "NashChennc"
+    link: "https://github.com/nashchennc"
+    icon: fa-brands fa-github
+    color: mdui-text-color-black
+  bilibili:
+    text: "哔哩哔哩"
+    link: "https://space.bilibili.com/1574355304"
+    icon: fa-brands fa-bilibili
+    color: mdui-text-color-pink
+  email:
+    text: "chennachuan0423@gmail.com"
+    link: "mailto:chennachuan0423@gmail.com"
+    icon: fa-solid fa-envelope
+    color: mdui-text-color-blue
+
+# ============================================
+# 四、其他配置项
+# ============================================
+# 以下配置项保留用于兼容性，部分可能未在当前版本使用
+# ============================================
+
+# RSS 订阅链接
+# 类型: String
+# 默认值: /atom.xml
+rss: /atom.xml
+
+# 文章摘要链接文本（当前未使用）
+# 类型: String
+# 默认值: Read More
+excerpt_link: Read More
+
+# 网站图标路径
+# 类型: String
+# 默认值: /favicon.png
+favicon: /favicon.png
+
+# 浏览器 UI 主题色（meta theme-color），建议与品牌主色一致
+theme_color: '#6750A4'
+
+# ============================================
+# 页脚（社交图标 + 底栏导航 + 版权）
+# show_social: 是否显示社交图标行（数据来自上方 social；默认 true）
+# social_intro: 社交图标上方的短句；留空则使用当前语言的 i18n footer_social_intro
+# nav: 每项 path 必填；文案用 text（任意语言字符串）或 i18n（对应 languages 中的键）
+# ============================================
+footer:
+  show_social: true
+  social_intro: "无聊死了。来找我聊会天。"
+  nav:
+    - { i18n: home, path: "/" }
+    - { i18n: categories, path: "/categories" }
+    - { i18n: archive_a, path: "/archives" }
+    - { i18n: about, path: "/about" }
+
+# ============================================
+# 五、Hexo 内置配置（保留用于兼容性）
+# ============================================
+# 以下配置项是 Hexo 主题的标准配置，保留以兼容其他主题
+# 注意: 部分配置项在当前主题中可能未使用
+# ============================================
+
+# Header 菜单配置（当前未在 topbar 中使用）
+# 注意: topbar 中的菜单项是硬编码的，如需修改请编辑 layout/partial/topbar.ejs
+menu:
+  Home: /
+  Categories: /categories
+  Archives: /archives
+  About: /about
+
+# Content 配置
+fancybox: true
+
+# Sidebar 配置（当前未使用）
+sidebar: right
+widgets:
+#- category
+#- tag
+#- tagcloud
+#- archive
+#- recent_posts
+
+# 索引页小部件配置（当前未使用）
+index_widgets:
+# - category
+# - tagcloud
+# - archive
+
+# 小部件行为配置（当前未使用）
+archive_type: 'monthly'
+show_count: false
+
+# 分析工具配置（当前未使用）
+google_analytics:
+gauges_analytics:
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:
+
+# 字数统计配置
+symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+  awl: 2
+  wpm: 275
+
+# 索引生成器配置
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -updated  # 关键：按 updated 倒序排列
+
+# ============================================
+# 六、Markdown 渲染器配置
+# ============================================
+# 解决一级标题无法跳转的问题
+# ============================================
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+    linkify: true
+    typographer: true
+    quotes: '""'''
+  plugins:
+    - markdown-it-anchor      # 启用锚点生成插件
+    - markdown-it-toc-done-right # 可选
+  anchors:
+    level: 1                  # 【关键修改】从 1 (H1) 开始生成 ID，默认为 2
+    collisionSuffix: ''
+    permalink: false          # 是否在标题旁显示 ¶ 符号，按需开启
+    permalinkClass: header-anchor
+    permalinkSymbol: ¶

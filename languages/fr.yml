@@ -1,0 +1,63 @@
+categories: Catégories
+search: Rechercher
+search_placeholder: Rechercher des articles…
+search_no_results: Aucun article correspondant
+search_aria_input: Rechercher des articles
+index_taxonomy_nav: Catégories et mots-clés
+tags: Mot-clés
+tagcloud: Nuage de mot-clés
+tweets: Tweets
+prev: Précédent
+next: Suivant
+pagination_nav: Pagination
+comment: Commentaires
+archive_a: Archives
+archive_b: "Archives: %s"
+page: Page %d
+recent_posts: Articles récents
+newer: Récent
+older: Ancien
+share: Partager
+powered_by: Propulsé par
+rss_feed: Flux RSS
+footer_subscribe_title: Envie de rester informé·e ?
+footer_nav_aria: Navigation du pied de page
+footer_social_intro: Bored? Come chat for a bit.
+category: Catégorie
+tag: Mot-clé
+home: Accueil
+about: À propos
+toc: Table des matières
+last_update: Dernière mise à jour
+uncategorized: Non catégorisé
+min_read: min de lecture
+read_full_article: Lire l'article complet
+articles: articles
+current_category: Catégorie actuelle
+view_all_categories: Voir toutes les catégories
+category_page_default_lede: ""
+tag_page_default_lede: ""
+category_card_kind: "Note"
+prev_post: Précédent
+next_post: Suivant
+word_count: Nombre de mots
+reading_time: Temps de lecture estimé
+completed: Terminé
+goto_archive: aller aux Archives
+goto_top: aller en haut
+goto_bottom: aller en bas
+welcome: Bienvenue sur mon blog
+posts_count: articles
+invalid_folder_name: Nom de dossier invalide
+folder_not_found: "Dossier introuvable: source/%s"
+read_dir_failed: Échec de la lecture du répertoire
+no_files: Aucun fichier disponible.
+page_not_created: Page non créée
+topbar_profile_open: Ouvrir le profil de l’auteur et les liens sociaux
+topbar_social_links: Liens sociaux
+theme_toggle_to_dark: Passer en mode sombre
+theme_toggle_to_light: Passer en mode clair
+theme_toggle_follow_system: Thème système (Maj+clic pour rétablir)
+default_site_title: Mon Blog
+default_site_subtitle: Un blog simple et épuré
+default_author: Auteur

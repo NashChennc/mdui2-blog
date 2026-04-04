@@ -1,0 +1,241 @@
+/* ============================================
+ * 顶栏（mdui-top-app-bar + 首页 mdui-button；分类为 <a>，样式复用 .mdui-prose a）
+ * ============================================ */
+.app-top-bar {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: max(var(--app-top-bar-pad-x), env(safe-area-inset-left, 0px))
+    max(var(--app-top-bar-pad-x), env(safe-area-inset-right, 0px));
+  padding-top: calc(var(--app-top-bar-pad-y-top) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--app-top-bar-pad-y-bottom) + env(safe-area-inset-bottom, 0px));
+  min-height: calc(
+    var(--app-top-bar-pad-y-top) + var(--app-top-bar-pad-y-bottom) + var(--app-top-bar-row) + env(safe-area-inset-top, 0px) +
+      env(safe-area-inset-bottom, 0px)
+  );
+  height: auto;
+  /* 去掉 Material 涟漪层，避免顶栏像可按下块而非链接 */
+  --mdui-comp-ripple-state-layer-color: transparent;
+  /* MDUI :host 默认 align-items:flex-start */
+  align-items: center;
+}
+
+.topbar-spacer {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* 首页独立固定在左侧（与居中分类区分离） */
+.topbar-home {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin-inline-end: 0.75rem;
+}
+
+/* 相对顶栏水平居中：左右预留首页槽位 + 右侧控件区 */
+.topbar-nav {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + (var(--app-top-bar-pad-y-top) - var(--app-top-bar-pad-y-bottom)) / 2);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  flex: none;
+  gap: 0.55rem 1.15rem;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  max-width: min(72rem, calc(100% - 12rem - var(--topbar-home-reserve, 5.5rem)));
+  width: max-content;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  /* 横向滚动条占一条底边，会让整块分类区「上轻下重」；仍可滑动/滚轮滚动 */
+  scrollbar-width: none;
+  pointer-events: auto;
+}
+
+.topbar-nav::-webkit-scrollbar {
+  display: none;
+}
+
+mdui-button.topbar-nav-btn {
+  flex-shrink: 0;
+  /* 与 ::part(button) 及 --app-top-bar-row 一致，避免宿主与内部 hover 错位 */
+  box-sizing: border-box;
+  min-height: var(--app-top-bar-row);
+  height: var(--app-top-bar-row);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+mdui-button.topbar-nav-btn::part(button) {
+  min-height: var(--app-top-bar-row);
+  /* 纵向交给 flex 居中，避免再叠一层 padding 造成字块上下留白不均 */
+  padding: 0 1rem;
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+mdui-button.topbar-nav-btn--active {
+  color: rgb(var(--mdui-color-primary));
+  font-weight: 600;
+}
+
+mdui-button.topbar-nav-btn--active::part(button) {
+  background: transparent;
+  text-decoration: none;
+}
+
+.topbar-end {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.25rem;
+  margin-left: 0.75rem;
+  /* 右缘留白由 .app-top-bar padding-inline + safe-area 承担 */
+  margin-right: 0;
+}
+
+.topbar-profile-cluster {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.2rem;
+}
+
+.topbar-profile-dropdown {
+  --z-index: 200;
+}
+
+.topbar-profile-social-bar {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.05rem;
+}
+
+mdui-button-icon.topbar-profile-social-bar__btn {
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+mdui-button-icon.topbar-profile-social-bar__btn::part(button) {
+  min-width: var(--app-top-bar-row);
+  min-height: var(--app-top-bar-row);
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-profile-social-bar__icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .topbar-profile-social-bar {
+    display: none;
+  }
+}
+
+mdui-button-icon.topbar-profile-trigger-btn {
+  color: rgb(var(--mdui-color-on-surface-variant));
+  box-sizing: border-box;
+  width: var(--app-top-bar-row);
+  height: var(--app-top-bar-row);
+}
+
+mdui-button-icon.topbar-profile-trigger-btn::part(button) {
+  min-height: var(--app-top-bar-row);
+  min-width: var(--app-top-bar-row);
+  padding: 0;
+  /* 与头像同为正圆，避免 8px 圆角裁切导致「不圆」 */
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-profile-trigger__avatar {
+  /* 行高减去左右各 2px 描边，避免大于可点区域被裁切、上下错位 */
+  width: calc(var(--app-top-bar-row) - 4px);
+  height: calc(var(--app-top-bar-row) - 4px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+  flex-shrink: 0;
+  border: 2px solid rgb(var(--mdui-color-surface-container-high));
+  box-sizing: border-box;
+  display: block;
+}
+
+.topbar-profile-trigger__avatar-icon {
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+  color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+mdui-button-icon.topbar-search-toggle {
+  flex-shrink: 0;
+  margin-inline-end: 0.5rem;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  box-sizing: border-box;
+  width: var(--app-top-bar-row);
+  height: var(--app-top-bar-row);
+}
+
+mdui-button-icon.topbar-search-toggle::part(button) {
+  min-height: var(--app-top-bar-row);
+  min-width: var(--app-top-bar-row);
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mdui-button-icon.topbar-theme-toggle {
+  flex-shrink: 0;
+  margin-inline-end: 0.875rem;
+  color: rgb(var(--mdui-color-on-surface-variant));
+  box-sizing: border-box;
+  width: var(--app-top-bar-row);
+  height: var(--app-top-bar-row);
+}
+
+mdui-button-icon.topbar-theme-toggle::part(button) {
+  min-height: var(--app-top-bar-row);
+  min-width: var(--app-top-bar-row);
+  border-radius: var(--mdui-shape-corner-medium, 8px);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

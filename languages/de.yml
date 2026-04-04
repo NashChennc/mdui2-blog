@@ -1,0 +1,61 @@
+categories: Kategorien
+search: Suche
+search_placeholder: Beiträge durchsuchen…
+search_no_results: Keine passenden Beiträge
+search_aria_input: Beiträge durchsuchen
+index_taxonomy_nav: Kategorien und Tags
+tags: Tags
+tagcloud: Tag Cloud
+tweets: Tweets
+prev: zurück
+next: weiter
+comment: Kommentare
+archive_a: Archiv
+archive_b: "Archive: %s"
+page: Seite %d
+recent_posts: letzter Beitrag
+newer: Neuer
+older: Älter
+share: Teilen
+powered_by: Powered by
+rss_feed: RSS Feed
+footer_subscribe_title: Auf dem Laufenden bleiben?
+footer_nav_aria: Fußzeilen-Navigation
+footer_social_intro: Bored? Come chat for a bit.
+category: Kategorie
+tag: Tag
+home: Startseite
+about: Über
+toc: Inhaltsverzeichnis
+last_update: Letzte Aktualisierung
+uncategorized: Unkategorisiert
+min_read: Min. Lesezeit
+read_full_article: Vollständigen Artikel lesen
+articles: Artikel
+current_category: Aktuelle Kategorie
+view_all_categories: Alle Kategorien anzeigen
+prev_post: Vorheriger
+next_post: Nächster
+word_count: Wortanzahl
+reading_time: Geschätzte Lesezeit
+completed: Abgeschlossen
+goto_archive: Zum Archiv
+goto_top: Nach oben
+goto_bottom: Nach unten
+welcome: Willkommen auf meinem Blog
+posts_count: Beiträge
+invalid_folder_name: Ungültiger Ordnername
+folder_not_found: "Ordner nicht gefunden: source/%s"
+read_dir_failed: Verzeichnis konnte nicht gelesen werden
+no_files: Keine Dateien verfügbar.
+page_not_created: Seite nicht erstellt
+topbar_profile_open: Autorenprofil und Social-Links öffnen
+topbar_social_links: Social-Links
+theme_toggle_to_dark: Zu Dunkelmodus wechseln
+theme_toggle_to_light: Zu Hellmodus wechseln
+theme_toggle_follow_system: Systemthema (Umschalt+Klick zum Zurücksetzen)
+default_site_title: Mein Blog
+default_site_subtitle: Ein einfacher und sauberer Blog
+default_author: Autor
+category_page_default_lede: ""
+tag_page_default_lede: ""

@@ -1,0 +1,61 @@
+categories: Kategorier
+search: Søk
+search_placeholder: Søk i innlegg…
+search_no_results: Ingen treff
+search_aria_input: Søk i innlegg
+index_taxonomy_nav: Kategorier og stikkord
+tags: Tags
+tagcloud: Tag Cloud
+tweets: Tweets
+prev: Forrige
+next: Neste
+comment: Kommentarer
+archive_a: Arkiv
+archive_b: "Arkiv: %s"
+page: Side %d
+recent_posts: Siste innlegg
+newer: Newer
+older: Older
+share: Share
+powered_by: Powered by
+rss_feed: RSS Feed
+footer_subscribe_title: Vil du holde deg oppdatert?
+footer_nav_aria: Bunntekstnavigasjon
+footer_social_intro: Bored? Come chat for a bit.
+category: Category
+tag: Tag
+home: Hjem
+about: Om
+toc: Innholdsfortegnelse
+last_update: Siste oppdatering
+uncategorized: Ukategorisert
+min_read: min lesing
+read_full_article: Les hele artikkelen
+articles: artikler
+current_category: Gjeldende kategori
+view_all_categories: Vis alle kategorier
+prev_post: Forrige
+next_post: Neste
+word_count: Ordtelling
+reading_time: Estimert lesetid
+completed: Fullført
+goto_archive: gå til Arkiv
+goto_top: gå til toppen
+goto_bottom: gå til bunnen
+welcome: Velkommen til min blogg
+posts_count: innlegg
+invalid_folder_name: Ugyldig mappenavn
+folder_not_found: "Mappe ikke funnet: source/%s"
+read_dir_failed: Kunne ikke lese mappe
+no_files: Ingen filer tilgjengelig.
+page_not_created: Side ikke opprettet
+topbar_profile_open: Åpne forfatterprofil og sosiale lenker
+topbar_social_links: Sosiale lenker
+theme_toggle_to_dark: Bytt til mørk modus
+theme_toggle_to_light: Bytt til lys modus
+theme_toggle_follow_system: Systemtema (Shift+klikk for å tilbakestille)
+default_site_title: Min Blogg
+default_site_subtitle: En enkel og ren blogg
+default_author: Forfatter
+category_page_default_lede: ""
+tag_page_default_lede: ""

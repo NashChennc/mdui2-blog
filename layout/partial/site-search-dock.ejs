@@ -1,0 +1,31 @@
+<mdui-dialog
+  id="search-palette"
+  class="search-palette-dialog"
+  close-on-esc
+  data-search-url="<%- url_for((config.search && config.search.path) ? config.search.path : 'search.json') %>"
+  data-search-no-results="<%= __('search_no_results') %>"
+  data-search-empty-hint="<%= __('search_placeholder') %>"
+>
+  <div class="palette-container">
+    <mdui-text-field
+      id="palette-input"
+      class="palette-input"
+      variant="outlined"
+      type="search"
+      icon="search"
+      placeholder="<%= __('search_placeholder') %>"
+      clearable
+      aria-label="<%= __('search_aria_input') %>"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+    ></mdui-text-field>
+
+    <mdui-list id="palette-results" class="palette-results" hidden></mdui-list>
+
+    <div id="palette-empty-state" class="palette-empty-state">
+      <mdui-icon name="manage_search" class="palette-empty-state__icon"></mdui-icon>
+      <p class="palette-empty-state__text"><%= __('search_placeholder') %></p>
+    </div>
+  </div>
+</mdui-dialog>

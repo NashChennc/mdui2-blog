@@ -1,0 +1,62 @@
+<%
+                    var prevPost = null;
+                    var nextPost = null;
+                    var currentCatName = "";
+                    
+                    if (page.categories && page.categories.length){
+                        var cat = page.categories.data[0];
+                        currentCatName = cat.name;
+                        
+                        var posts = cat.posts.sort('title').sort('-updated');
+                        
+                        var currentIndex = -1;
+                        posts.forEach(function(p, i){
+                            if (p._id == page._id) currentIndex = i;
+                        });
+
+                        if (currentIndex > 0) {
+                            nextPost = posts.data[currentIndex - 1];
+                        }
+                        if (currentIndex < posts.length - 1) {
+                            prevPost = posts.data[currentIndex + 1];
+                        }
+                    }
+                %>
+
+                <% if (prevPost || nextPost) { %>
+                <mdui-divider></mdui-divider>
+                <div class="post-nav">
+                    <div class="post-nav__side post-nav__side--prev">
+                            <% if(prevPost){ %>
+                                <a class="post-nav__link" href="<%- url_for(prevPost.path) %>">
+                                    <span class="post-nav__label">
+                                        <mdui-icon name="arrow_back"></mdui-icon>
+                                        <%= __('prev_post') %>
+                                    </span>
+                                    <span class="post-nav__body">
+                                        <% if (currentCatName) { %>
+                                        <span class="post-nav__category"><%= currentCatName %></span>
+                                        <% } %>
+                                        <span class="post-nav__title"><%= prevPost.title %></span>
+                                    </span>
+                                </a>
+                            <% } %>
+                    </div>
+                    <div class="post-nav__side post-nav__side--next">
+                            <% if(nextPost){ %>
+                                <a class="post-nav__link" href="<%- url_for(nextPost.path) %>">
+                                    <span class="post-nav__label">
+                                        <%= __('next_post') %>
+                                        <mdui-icon name="arrow_forward"></mdui-icon>
+                                    </span>
+                                    <span class="post-nav__body">
+                                        <% if (currentCatName) { %>
+                                        <span class="post-nav__category"><%= currentCatName %></span>
+                                        <% } %>
+                                        <span class="post-nav__title"><%= nextPost.title %></span>
+                                    </span>
+                                </a>
+                            <% } %>
+                    </div>
+                </div>
+                <% } %>
