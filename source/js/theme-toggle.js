@@ -1,5 +1,6 @@
 /**
  * 顶栏亮/暗主题切换：localStorage key mdblog-theme；Shift+点击恢复跟随系统。
+ * 主题 DOM 由 mdui.setTheme 管理；无 mdui 时回退为手动 class。
  */
 (function () {
   var STORAGE_KEY = 'mdblog-theme';
@@ -19,10 +20,21 @@
     } catch (e) {}
   }
 
+  function themeModeFromMdui() {
+    if (typeof mdui !== 'undefined' && typeof mdui.getTheme === 'function') {
+      return mdui.getTheme();
+    }
+    var el = document.documentElement;
+    if (el.classList.contains('mdui-theme-dark')) return 'dark';
+    if (el.classList.contains('mdui-theme-light')) return 'light';
+    if (el.classList.contains('mdui-theme-auto')) return 'auto';
+    return 'light';
+  }
+
   function isEffectivelyDark() {
-    var stored = getStored();
-    if (stored === 'dark') return true;
-    if (stored === 'light') return false;
+    var mode = themeModeFromMdui();
+    if (mode === 'dark') return true;
+    if (mode === 'light') return false;
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
@@ -41,6 +53,13 @@
     }
   }
 
+  /** 与 <head> 防闪烁脚本一致：用 localStorage 同步 MDUI 状态。 */
+  function syncThemeFromStorage() {
+    var t = getStored();
+    var next = t === 'light' || t === 'dark' ? t : 'auto';
+    setMduiTheme(next);
+  }
+
   function updateToggleButton(btn) {
     if (!btn) return;
     var dark = isEffectivelyDark();
@@ -56,27 +75,27 @@
   }
 
   function init() {
+    syncThemeFromStorage();
+
     var btn = document.getElementById('theme-toggle');
     if (!btn) return;
 
     updateToggleButton(btn);
 
     var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+    function onSchemeChange() {
+      if (themeModeFromMdui() === 'auto') updateToggleButton(btn);
+    }
     if (mq && mq.addEventListener) {
-      mq.addEventListener('change', function () {
-        if (getStored() === null) updateToggleButton(btn);
-      });
+      mq.addEventListener('change', onSchemeChange);
     } else if (mq && mq.addListener) {
-      mq.addListener(function () {
-        if (getStored() === null) updateToggleButton(btn);
-      });
+      mq.addListener(onSchemeChange);
     }
 
     btn.addEventListener('click', function (ev) {
       if (ev.shiftKey) {
         setStored(null);
         setMduiTheme('auto');
-        applyHtmlClass('auto');
         updateToggleButton(btn);
         return;
       }
@@ -85,7 +104,6 @@
       var next = dark ? 'light' : 'dark';
       setStored(next);
       setMduiTheme(next);
-      applyHtmlClass(next);
       updateToggleButton(btn);
     });
   }
