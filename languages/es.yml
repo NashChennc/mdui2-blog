@@ -14,6 +14,7 @@ next: Siguiente
 comment: Comentarios
 archive_a: Archivos
 archive_b: "Archivos: %s"
+files: Ficheros
 page: Página %d
 recent_posts: Posts recientes
 newer: Nuevo

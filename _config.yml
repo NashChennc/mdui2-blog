@@ -184,8 +184,8 @@ footer:
   social_intro: "无聊死了。来找我聊会天。"
   nav:
     - { i18n: home, path: "/" }
-    - { i18n: categories, path: "/categories" }
     - { i18n: archive_a, path: "/archives" }
+    - { i18n: files, path: "/files" }
     - { i18n: about, path: "/about" }
 
 # ============================================

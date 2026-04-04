@@ -14,6 +14,7 @@ next: Neste
 comment: Kommentarer
 archive_a: Arkiv
 archive_b: "Arkiv: %s"
+files: Filer
 page: Side %d
 recent_posts: Siste innlegg
 newer: Newer

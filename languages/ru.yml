@@ -14,6 +14,7 @@ next: Вперед
 comment: Комментарии
 archive_a: Архив
 archive_b: "Архив: %s"
+files: Файлы
 page: Страница %d
 recent_posts: Недавние записи
 newer: Следующий

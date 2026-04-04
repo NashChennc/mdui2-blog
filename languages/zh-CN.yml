@@ -15,6 +15,7 @@ pagination_nav: 分页导航
 comment: 留言
 archive_a: 归档
 archive_b: 归档：%s
+files: 文件
 page: 第 %d 页
 recent_posts: 最新文章
 newer: Newer

@@ -15,6 +15,7 @@ pagination_nav: Pagination
 comment: Comments
 archive_a: Archives
 archive_b: "Archives: %s"
+files: Files
 page: Page %d
 recent_posts: Recent Posts
 newer: Newer
