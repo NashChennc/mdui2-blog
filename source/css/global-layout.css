@@ -2,12 +2,14 @@
  * 全局样式（无法用 MDUI 类替代的部分）
  * ============================================ */
 html {
+  margin: 0;
   font-family: var(--app-font-stack);
   scroll-padding-top: var(--app-top-bar-offset);
   /* scroll-behavior: smooth; 已移除，防止首页自动下滑 */
 }
 
 body#top {
+  margin: 0;
   font-family: inherit;
 }
 

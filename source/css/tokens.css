@@ -4,16 +4,9 @@
   --app-font-stack: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC",
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --mdui-shape-corner-medium: 8px;
-  /* 顶栏：上/下留白可分别调；下略大时配合 topbar .topbar-nav 的 top 补偿保持与左右对齐 */
-  --app-top-bar-pad-y-top: 0.5rem;
-  --app-top-bar-pad-y-bottom: 1.05rem;
-  --app-top-bar-row: 2.75rem;
-  /* 顶栏左右内边距（与安全区取 max，避免贴边） */
-  --app-top-bar-pad-x: 1.25rem;
-  --app-top-bar-offset: calc(
-    var(--app-top-bar-pad-y-top) + var(--app-top-bar-pad-y-bottom) + var(--app-top-bar-row) + env(safe-area-inset-top, 0px) +
-      env(safe-area-inset-bottom, 0px)
-  );
+  /* 顶栏：与 topbar.css `.app-top-bar { height: 4rem }` 一致；行高与顶栏内控件一致 */
+  --app-top-bar-row: 3rem;
+  --app-top-bar-offset: calc(4rem + env(safe-area-inset-top, 0px));
   /* 文章页：目录 sticky 时与顶栏的缝（须与 max-height 共用 --app-sticky-offset） */
   --app-sticky-stack-gap: 0.125rem;
   --app-sticky-offset: calc(var(--app-top-bar-offset) + var(--app-sticky-stack-gap));
