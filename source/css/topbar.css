@@ -2,7 +2,12 @@
  * 顶栏（mdui-top-app-bar + 首页 mdui-button；分类为 <a>，样式复用 .mdui-prose a）
  * ============================================ */
 .app-top-bar {
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* 吸顶时遮住下方滚动内容；与 MDUI 顶栏表面一致 */
+  background-color: rgb(var(--mdui-color-surface));
   width: 100%;
   box-sizing: border-box;
   padding-inline: max(var(--app-top-bar-pad-x), env(safe-area-inset-left, 0px))

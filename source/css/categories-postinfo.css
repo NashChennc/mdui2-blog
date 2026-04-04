@@ -164,6 +164,39 @@ mdui-card.archives-category-card {
   max-width: 650px;
 }
 
+/* 版心外说明段内 <a>：对齐 MDUI .mdui-prose a 的主色与悬停下划线，不作用于 prose */
+.notes-subtitle a {
+  color: rgb(var(--mdui-color-primary));
+  text-decoration: none;
+}
+
+.notes-subtitle a:hover,
+.notes-subtitle a:focus-visible {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--mdui-color-primary));
+  text-underline-offset: 0.08em;
+  text-decoration-thickness: 0.0625rem;
+}
+
+.notes-subtitle a:focus:not(:focus-visible) {
+  border-bottom: none;
+  text-decoration: none;
+}
+
+.notes-subtitle__row {
+  display: block;
+}
+
+.notes-subtitle__row + .notes-subtitle__row {
+  margin-top: 0.4em;
+}
+
+/* 全屏 Hero 下方首块：略收紧顶距，避免与 banner 区重复感过重 */
+.notes-header--index {
+  margin-top: 1.25rem;
+}
+
 .note-cover {
   width: 100%;
   flex-shrink: 0;

@@ -39,6 +39,7 @@ current_category: Current Category
 view_all_categories: View All Categories
 category_page_default_lede: ""
 tag_page_default_lede: ""
+index_page_default_lede: ""
 category_card_kind: "Note"
 prev_post: Previous
 next_post: Next

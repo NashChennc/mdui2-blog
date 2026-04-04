@@ -35,6 +35,33 @@
 <div class="page-shell app-container page-shell--pad-index">
     <div class="page-grid page-grid--single">
         <main class="page-main">
+            <%
+                var indexTitle = '';
+                if (theme.index_page && theme.index_page.title) {
+                    indexTitle = String(theme.index_page.title).trim();
+                }
+                if (!indexTitle && config.title) {
+                    indexTitle = String(config.title).trim();
+                }
+                var indexLede = '';
+                if (theme.index_page && theme.index_page.lede) {
+                    indexLede = String(theme.index_page.lede).trim();
+                }
+                if (!indexLede) {
+                    var _indexLedeI18n = __('index_page_default_lede');
+                    if (_indexLedeI18n && _indexLedeI18n !== 'index_page_default_lede') {
+                        indexLede = String(_indexLedeI18n).trim();
+                    }
+                }
+            %>
+            <% if (indexTitle) { %>
+            <header class="notes-header notes-header--index">
+                <h2 class="notes-title"><%= indexTitle %></h2>
+                <% if (indexLede) { %>
+                <p class="notes-subtitle"><%- indexLede %></p>
+                <% } %>
+            </header>
+            <% } %>
             <%- partial('partial/index-taxonomy') %>
             <div class="notes-grid notes-grid--index">
                 <% page.posts.each(function(post, i){ %>

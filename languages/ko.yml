@@ -61,3 +61,4 @@ default_site_subtitle: 간단하고 깔끔한 블로그
 default_author: 작성자
 category_page_default_lede: ""
 tag_page_default_lede: ""
+index_page_default_lede: ""

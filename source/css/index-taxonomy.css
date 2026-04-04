@@ -9,14 +9,6 @@
   margin-top: 1.25rem;
 }
 
-.index-taxonomy__heading {
-  margin: 0 0 0.5rem;
-  font-size: var(--mdui-typescale-title-medium-size, 1rem);
-  line-height: var(--mdui-typescale-title-medium-line-height, 1.5rem);
-  font-weight: 600;
-  color: rgb(var(--mdui-color-on-surface));
-}
-
 .index-taxonomy__chips {
   display: flex;
   flex-wrap: wrap;
@@ -172,7 +164,7 @@
   border-radius: var(--mdui-shape-corner-large, 1rem);
   font-size: var(--mdui-typescale-label-large-size, 0.875rem);
   line-height: var(--mdui-typescale-label-large-line-height, 1.25rem);
-  /* 与 .mdui-prose a:hover 下划线解耦，避免悬停时行盒/单元格高度抖动 */
+  /* 与 .mdui-prose 正文链接的下划线解耦，避免悬停时行盒/单元格高度抖动 */
   text-decoration: none;
   text-underline-offset: 0;
   text-decoration-thickness: 0;
@@ -211,6 +203,11 @@
   border-bottom: none;
   text-underline-offset: 0;
   text-decoration-thickness: 0;
+}
+
+.mdui-prose a.index-taxonomy__chip:focus:not(:focus-visible) {
+  border-bottom: none;
+  text-decoration: none;
 }
 
 /* 表格内仅有一个 chip 时：单元格垂直居中，避免 top 对齐 + 行内盒在 hover 时顶行跳动 */

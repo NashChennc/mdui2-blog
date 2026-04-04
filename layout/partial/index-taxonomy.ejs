@@ -34,8 +34,8 @@
   /* 标签渐进披露：初屏条数（0 = 不折叠，来自 theme.index_taxonomy.tags_visible_initial） */
   var _tagInitial = theme.index_taxonomy && typeof theme.index_taxonomy.tags_visible_initial === 'number'
     ? theme.index_taxonomy.tags_visible_initial
-    : 10;
-  var tagInitialLimit = _tagInitial < 0 ? 10 : _tagInitial;
+    : 8;
+  var tagInitialLimit = _tagInitial < 0 ? 8 : _tagInitial;
   var tagOverflowActive = tagInitialLimit > 0 && pageTagList.length > tagInitialLimit;
   var pageTagListTop = tagOverflowActive ? pageTagList.slice(0, tagInitialLimit) : pageTagList;
   var pageTagListRest = tagOverflowActive ? pageTagList.slice(tagInitialLimit) : [];
@@ -43,10 +43,7 @@
 <% if (hasCatBlock || hasTagBlock) { %>
 <section class="index-taxonomy" aria-label="<%= __('index_taxonomy_nav') %>">
   <% if (hasCatBlock) { %>
-  <div class="index-taxonomy__block"<% if (!is_home()) { %> aria-label="<%= __('categories') %>"<% } %>>
-    <% if (is_home()) { %>
-    <h2 class="index-taxonomy__heading" id="index-taxonomy-categories-heading"><%= __('categories') %></h2>
-    <% } %>
+  <div class="index-taxonomy__block" aria-label="<%= __('categories') %>">
     <div class="index-taxonomy__chips" role="list">
       <% site.categories.sort('length').sort('-name').each(function (item) { %>
         <% if (item.posts.length) { %>
@@ -62,10 +59,7 @@
   </div>
   <% } %>
   <% if (hasTagBlock) { %>
-  <div class="index-taxonomy__block index-taxonomy__block--tags"<% if (!is_home()) { %> aria-label="<%= __('tags') %>"<% } %>>
-    <% if (is_home()) { %>
-    <h2 class="index-taxonomy__heading" id="index-taxonomy-tags-heading"><%= __('tags') %></h2>
-    <% } %>
+  <div class="index-taxonomy__block index-taxonomy__block--tags" aria-label="<%= __('tags') %>">
     <div class="index-taxonomy__tags-panel">
       <div class="index-taxonomy__tags-flow">
         <div class="index-taxonomy__chips index-taxonomy__chips--in-flow" role="list">

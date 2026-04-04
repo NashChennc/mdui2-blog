@@ -61,3 +61,4 @@ default_site_subtitle: Um blog simples e limpo
 default_author: Autor
 category_page_default_lede: ""
 tag_page_default_lede: ""
+index_page_default_lede: ""

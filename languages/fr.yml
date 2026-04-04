@@ -39,6 +39,7 @@ current_category: Catégorie actuelle
 view_all_categories: Voir toutes les catégories
 category_page_default_lede: ""
 tag_page_default_lede: ""
+index_page_default_lede: ""
 category_card_kind: "Note"
 prev_post: Précédent
 next_post: Suivant

@@ -25,9 +25,15 @@ body#top {
     overflow-wrap: break-word;
   }
 
-  /* 覆盖 MDUI border-bottom 式下划线，改为 text-underline */
+  /* 去掉鼠标点击后仅 :focus（非 :focus-visible）时 MDUI 残留的底边框/下划线 */
+  & a:focus:not(:focus-visible) {
+    border-bottom: none;
+    text-decoration: none;
+  }
+
+  /* 仅悬停与键盘聚焦时显示下划线（替代 MDUI 的 border-bottom） */
   & a:hover,
-  & a:focus {
+  & a:focus-visible {
     border-bottom: none;
     text-decoration: underline;
     text-decoration-color: rgb(var(--mdui-color-primary));
@@ -57,7 +63,7 @@ body#top {
 }
 
 .mdui-prose--inline-nav a:hover,
-.mdui-prose--inline-nav a:focus {
+.mdui-prose--inline-nav a:focus-visible {
   text-underline-offset: 0.18em;
 }
 
