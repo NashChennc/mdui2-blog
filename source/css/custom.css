@@ -1,17 +1,4 @@
 /**
- * mdblog 样式入口：按域拆分子文件，便于维护。
- * 子文件与 custom.css 同目录，由 @import 串联（单 link，避免改 layout）。
+ * 全局覆盖：在此追加规则；由 layout 于各模块 stylesheet 之后加载。
+ * 主样式由 layout.ejs 并行引入同目录 slice，避免在此使用 @import 造成瀑布阻塞。
  */
-@import url('./tokens.css');
-@import url('./global-layout.css');
-@import url('./topbar.css');
-@import url('./hero.css');
-@import url('./motion-scroll-reveal.css');
-@import url('./lists-cards.css');
-@import url('./categories-postinfo.css');
-@import url('./footer.css');
-@import url('./banner-page.css');
-@import url('./sidebar-footer.css');
-@import url('./article-prose.css');
-@import url('./index-taxonomy.css');
-@import url('./site-search.css');

@@ -65,7 +65,7 @@
 
 mdui-button.topbar-nav-btn {
   flex-shrink: 0;
-  /* 与 ::part(button) 及 --app-top-bar-row 一致，避免宿主与内部 hover 错位 */
+  /* 与 --app-top-bar-row 一致，保证分类行高与顶栏对齐 */
   box-sizing: border-box;
   min-height: var(--app-top-bar-row);
   height: var(--app-top-bar-row);
@@ -134,18 +134,6 @@ mdui-button-icon.topbar-profile-social-bar__btn {
   color: rgb(var(--mdui-color-on-surface-variant));
 }
 
-mdui-button-icon.topbar-profile-social-bar__btn::part(button) {
-  min-width: var(--app-top-bar-row);
-  min-height: var(--app-top-bar-row);
-  border-radius: var(--mdui-shape-corner-medium, 8px);
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .topbar-profile-social-bar__icon {
   font-size: 1rem;
   line-height: 1;
@@ -162,20 +150,6 @@ mdui-button-icon.topbar-profile-trigger-btn {
   box-sizing: border-box;
   width: var(--app-top-bar-row);
   height: var(--app-top-bar-row);
-}
-
-mdui-button-icon.topbar-profile-trigger-btn::part(button) {
-  min-height: var(--app-top-bar-row);
-  min-width: var(--app-top-bar-row);
-  padding: 0;
-  /* 与头像同为正圆，避免 8px 圆角裁切导致「不圆」 */
-  border-radius: 50%;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .topbar-profile-trigger__avatar {
@@ -207,18 +181,6 @@ mdui-button-icon.topbar-search-toggle {
   height: var(--app-top-bar-row);
 }
 
-mdui-button-icon.topbar-search-toggle::part(button) {
-  min-height: var(--app-top-bar-row);
-  min-width: var(--app-top-bar-row);
-  border-radius: var(--mdui-shape-corner-medium, 8px);
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 mdui-button-icon.topbar-theme-toggle {
   flex-shrink: 0;
   margin-inline-end: 0.875rem;
@@ -226,16 +188,4 @@ mdui-button-icon.topbar-theme-toggle {
   box-sizing: border-box;
   width: var(--app-top-bar-row);
   height: var(--app-top-bar-row);
-}
-
-mdui-button-icon.topbar-theme-toggle::part(button) {
-  min-height: var(--app-top-bar-row);
-  min-width: var(--app-top-bar-row);
-  border-radius: var(--mdui-shape-corner-medium, 8px);
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

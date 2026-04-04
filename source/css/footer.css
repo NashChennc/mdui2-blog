@@ -45,18 +45,6 @@ mdui-button-icon.site-footer__social-btn {
   color: rgb(var(--mdui-color-on-surface-variant));
 }
 
-mdui-button-icon.site-footer__social-btn::part(button) {
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  border-radius: var(--mdui-shape-corner-medium, 8px);
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .site-footer__social-icon {
   font-size: 1.125rem;
   line-height: 1;

@@ -38,7 +38,25 @@
   <link rel="stylesheet" href="<%- url_for('katex/katex.min.css') %>">
   <% } %>
 
-  <!-- Custom CSS (最小化，只包含无法用 MDUI 实现的部分) -->
+  <!-- 站点样式：并行加载各模块，避免单入口 custom.css 内 @import 串行阻塞 FCP -->
+  <% const mdblogCss = [
+    'css/tokens.css',
+    'css/global-layout.css',
+    'css/topbar.css',
+    'css/hero.css',
+    'css/motion-scroll-reveal.css',
+    'css/lists-cards.css',
+    'css/categories-postinfo.css',
+    'css/footer.css',
+    'css/banner-page.css',
+    'css/sidebar-footer.css',
+    'css/article-prose.css',
+    'css/index-taxonomy.css',
+    'css/site-search.css'
+  ]; %>
+  <% mdblogCss.forEach(function (href) { %>
+  <link rel="stylesheet" href="<%- url_for(href) %>">
+  <% }); %>
   <link rel="stylesheet" href="<%- url_for('css/custom.css') %>">
 
   <meta name="theme-color" content="<%= theme.theme_color || '#6750A4' %>">
