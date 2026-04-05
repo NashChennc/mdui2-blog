@@ -1,7 +1,7 @@
 <div class="topbar-profile-cluster">
   <mdui-dropdown
     class="topbar-profile-dropdown"
-    trigger="hover click focus"
+    trigger="hover focus"
     placement="bottom-end"
     open-delay="180"
     close-delay="280"
@@ -10,8 +10,10 @@
       slot="trigger"
       variant="standard"
       class="topbar-profile-trigger-btn"
+      href="<%- url_for('/about') %>"
       aria-haspopup="true"
-      aria-label="<%- __('topbar_profile_open') %>"
+      aria-label="<%= __('about') %> · <%= __('topbar_profile_open') %>"
+      <% if (typeof page !== 'undefined' && page.path && /^about(\/|$)/.test(page.path)) { %>aria-current="page"<% } %>
     >
       <% if (theme.sidebar_config.avatar || theme.avatar) { %>
         <img src="<%- theme.sidebar_config.avatar || theme.avatar %>" class="topbar-profile-trigger__avatar" alt="" width="40" height="40" decoding="async">

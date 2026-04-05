@@ -2,3 +2,30 @@
  * 全局覆盖：在此追加规则；由 layout 于各模块 stylesheet 之后加载。
  * 主样式由 layout.ejs 并行引入同目录 slice，避免在此使用 @import 造成瀑布阻塞。
  */
+
+/* ==========================================================================
+   单行多图（Wikilink 同行为 2+ 图时自动 .md-gallery；手写 div 亦可用）
+   ========================================================================== */
+.md-gallery,
+.wikilink-img-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 2em 0;
+  width: 100%;
+}
+
+.md-gallery br,
+.wikilink-img-row br {
+  display: none !important;
+}
+
+.mdui-prose .md-gallery img,
+.mdui-prose .wikilink-img-row img {
+  margin: 0 !important;
+  flex: 1 1 0%;
+  min-width: 0;
+  height: auto;
+  border-radius: 8px;
+}
