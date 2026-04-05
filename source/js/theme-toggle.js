@@ -60,6 +60,12 @@
     setMduiTheme(next);
   }
 
+  function notifyMermaidRerender() {
+    if (typeof window.__mermaidRerender === 'function') {
+      void window.__mermaidRerender();
+    }
+  }
+
   function updateToggleButton(btn) {
     if (!btn) return;
     var dark = isEffectivelyDark();
@@ -84,7 +90,10 @@
 
     var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
     function onSchemeChange() {
-      if (themeModeFromMdui() === 'auto') updateToggleButton(btn);
+      if (themeModeFromMdui() === 'auto') {
+        updateToggleButton(btn);
+        notifyMermaidRerender();
+      }
     }
     if (mq && mq.addEventListener) {
       mq.addEventListener('change', onSchemeChange);
@@ -97,6 +106,7 @@
         setStored(null);
         setMduiTheme('auto');
         updateToggleButton(btn);
+        notifyMermaidRerender();
         return;
       }
 
@@ -105,6 +115,7 @@
       setStored(next);
       setMduiTheme(next);
       updateToggleButton(btn);
+      notifyMermaidRerender();
     });
   }
 

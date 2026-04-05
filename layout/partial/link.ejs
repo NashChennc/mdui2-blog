@@ -7,7 +7,8 @@
                         var cat = page.categories.data[0];
                         currentCatName = cat.name;
                         
-                        var posts = cat.posts.sort('title').sort('-updated');
+                        /* 按更新时间降序（最近改动的在前）：上一篇=更近更新(index-1)，下一篇=更早更新(index+1) */
+                        var posts = cat.posts.sort('-updated');
                         
                         var currentIndex = -1;
                         posts.forEach(function(p, i){
@@ -15,10 +16,10 @@
                         });
 
                         if (currentIndex > 0) {
-                            nextPost = posts.data[currentIndex - 1];
+                            prevPost = posts.data[currentIndex - 1];
                         }
                         if (currentIndex < posts.length - 1) {
-                            prevPost = posts.data[currentIndex + 1];
+                            nextPost = posts.data[currentIndex + 1];
                         }
                     }
                 %>
@@ -37,7 +38,7 @@
                                         <% if (currentCatName) { %>
                                         <span class="post-nav__category"><%= currentCatName %></span>
                                         <% } %>
-                                        <span class="post-nav__title"><%= prevPost.title %></span>
+                                        <span class="post-nav__title"><%= prevPost.blog_title || prevPost.title %></span>
                                     </span>
                                 </a>
                             <% } %>
@@ -53,7 +54,7 @@
                                         <% if (currentCatName) { %>
                                         <span class="post-nav__category"><%= currentCatName %></span>
                                         <% } %>
-                                        <span class="post-nav__title"><%= nextPost.title %></span>
+                                        <span class="post-nav__title"><%= nextPost.blog_title || nextPost.title %></span>
                                     </span>
                                 </a>
                             <% } %>

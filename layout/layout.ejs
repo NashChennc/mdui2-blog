@@ -102,7 +102,6 @@
   <script src="<%- url_for('mermaid/mermaid.min.js') %>"></script>
   <script>
     (function () {
-      if (!window.mermaid) return;
       var m = <%- JSON.stringify(config.mermaid) %>;
       var opts = Object.assign({}, m);
       delete opts.enable;
@@ -110,9 +109,10 @@
       var nested = opts.options;
       delete opts.options;
       if (nested && typeof nested === 'object') Object.assign(opts, nested);
-      mermaid.initialize(opts);
+      window.__HEXO_MERMAID__ = opts;
     })();
   </script>
+  <script src="<%- url_for('/js/mermaid-theme.js') %>" defer></script>
   <% } %>
 </body>
 </html>
