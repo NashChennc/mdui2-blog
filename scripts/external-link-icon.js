@@ -3,9 +3,7 @@
 const { load } = require('cheerio');
 
 const ICON_MARKUP =
-  '<span class="post-external-link-icon-wrap" aria-hidden="true">' +
-  '<mdui-icon name="open_in_new" class="post-external-link-icon"></mdui-icon>' +
-  '</span>';
+  '<mdui-icon name="open_in_new" class="post-external-link-icon" aria-hidden="true"></mdui-icon>';
 
 function siteHostname(hexo) {
   try {
@@ -105,8 +103,8 @@ hexo.extend.filter.register(
       const $next = $el.next();
       if (
         $next.length &&
-        ($next.hasClass('post-external-link-icon-wrap') ||
-          $next.hasClass('post-external-link-icon'))
+        ($next.is('mdui-icon.post-external-link-icon') ||
+          $next.hasClass('post-external-link-icon-wrap'))
       ) {
         return;
       }
