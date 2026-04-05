@@ -222,7 +222,7 @@ index_page:
   title: "生猛活海鲜大排档"
   lede: |
     <span class="notes-subtitle__row">这是什么？白河豚？一刀剁了。这是什么？白河豚？一刀剁了。</span>
-    <span class="notes-subtitle__row">这里主要用来堆放我的 <a href="/categories/笔记/">笔记</a> 和随手记下的 <a href="/categories/碎碎念/">碎碎念</a> ，有时也会整理一点 <a href="/categories/散文/">长文章</a> 。</span>
+    <span class="notes-subtitle__row">这里主要用来堆放我的 <a href="/categories/笔记/">笔记</a> 和随手记下的 <a href="/categories/碎碎念/">碎碎念</a> ，偶尔也会整理一点 <a href="/categories/散文/">长文章</a> 。</span>
     <span class="notes-subtitle__row">如果你想认识我，可以来 <a href="/about/">这里</a> 。</span>
 
 # 首页 / 列表页顶部分类·标签芯片：标签超过此数量时折叠，点「展开」再显示其余（0 = 始终全部展示）

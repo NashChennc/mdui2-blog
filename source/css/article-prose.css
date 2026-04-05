@@ -9,9 +9,11 @@
   padding: var(--post-content-pad) var(--post-content-pad) 0;
 }
 
-/* 标题与分类页 note-card .note-card-title 共用类名 */
+/* 标题与分类页 note-card .note-card-title 共用类名；文章页单独略放大 */
 .post-page__title.note-card-title {
   margin: 0 0 0.75rem;
+  font-size: calc(var(--mdui-typescale-title-large-size, 1.375rem) * 1.2);
+  line-height: calc(var(--mdui-typescale-title-large-line-height, 1.75rem) * 1.2);
 }
 
 /* 与分类卡片 .note-meta 同一套字号/行高/间距；不加 .note-meta 以免带入卡片底部 padding */
@@ -196,7 +198,10 @@ main.page-shell:has(.page-page__prose) {
 }
 
 main.page-shell .mdui-prose.page-page__prose {
-  max-width: 100%;
+  box-sizing: border-box;
+  max-width: min(var(--page-static-prose-max-width), 100%);
+  margin-right: auto;
+  margin-left: 0;
 }
 
 /* 文章侧栏目录：与正文卡片同内边距 + 长文时内部滚动 */

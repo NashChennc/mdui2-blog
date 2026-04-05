@@ -23,6 +23,8 @@
   /* 侧栏与主栏并排断点：小于此值时 #sidebar-wrapper 保留顶距。global-layout 内 @media 须写死 992px（var() 在 MQ 中不可靠） */
   --app-breakpoint-sidebar: 992px;
 
+  /* 独立 Page（about 等）：正文最大可读宽度，在版心内左对齐 */
+  --page-static-prose-max-width: 52rem;
   /* 文章 + 目录两栏：固定最大正文栏与固定目录栏，避免大图撑开 grid 挤占 TOC */
   --page-article-column-max-width: 56rem;
   --page-toc-column-width: 15.5rem;

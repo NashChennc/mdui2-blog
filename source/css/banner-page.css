@@ -104,8 +104,15 @@
   align-items: flex-end;
   width: 100%;
   white-space: nowrap;
-  gap: var(--banner-layout-gap, 0.5rem);
+  gap: var(--banner-layout-gap, 0.28rem);
   box-sizing: border-box;
+  /* 内页横幅主标题：略大于正文，随视口微调 */
+  font-size: clamp(1.08rem, 2.2vw, 1.2rem);
+}
+
+/* 内页横幅：收紧大写行字距（首页 hero 仍用 .banner-hero-title__upper 默认） */
+.banner-hero-title--inner .banner-hero-title__upper {
+  letter-spacing: 0.03em;
 }
 
 /* JS：data-banner-align 覆盖内页默认 flex-end */
@@ -124,7 +131,7 @@
 .banner-hero-title--inner.is-banner-title-wrap {
   flex-wrap: wrap;
   white-space: normal;
-  row-gap: var(--banner-layout-gap, 0.5rem);
+  row-gap: var(--banner-layout-gap, 0.28rem);
 }
 
 .banner-hero-title--inner.is-banner-title-stack {
@@ -225,9 +232,25 @@
   padding-bottom: 1.6px;
 }
 
-/* 内页顶栏副标题不需要首页 hero 的上边距 */
+/* 内页顶栏副标题不需要首页 hero 的上边距；整体字号略小于首页 hero */
 .banner-hero-subtitle.banner-hero-subtitle--inner {
   margin-top: 0;
+  gap: var(--banner-layout-gap, 0.85rem);
+  font-size: 0.75em;
+}
+
+.banner-hero-subtitle.banner-hero-subtitle--inner.is-banner-title-wrap {
+  row-gap: var(--banner-layout-gap, 0.85rem);
+}
+
+.banner-hero-subtitle--inner .banner-hero-subtitle__cite-upper {
+  letter-spacing: 0.03em;
+}
+
+.banner-hero-subtitle--inner .banner-hero-subtitle__aside {
+  letter-spacing: 0.25px;
+  padding-left: 0.35em;
+  padding-right: 0.35em;
 }
 
 /* 内页横幅文案区（替代 MDUI 1 的 mdui-card-primary / float） */
