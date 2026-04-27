@@ -3,7 +3,7 @@
   data-banner-layout-root
   data-banner-layout-config="<%- url_for('/js/banner-title-layout.json') %>"
 >
-  <div class="banner-bg" style="--banner-bg-image: url(<%- theme.banner.image || '/image/banner.png' %>);"></div>
+  <div class="banner-bg" style='--banner-bg-image: url("<%- mdblog_safe_css_url((theme.banner && theme.banner.image) || '/image/banner.png') %>");'></div>
 
   <div class="banner-overlay banner-overlay--tint">
     <div class="banner-inner">

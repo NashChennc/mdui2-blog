@@ -1,7 +1,7 @@
 const path = require('path');
-const { normalizePath } = require('./utils');
+const { getWikiTargetLookup, normalizePath } = require('./utils');
 
-module.exports = function buildIndex(hexo) {
+function buildIndex(hexo) {
   if (hexo.locals.get('foam_index')) {
     return hexo.locals.get('foam_index');
   }
@@ -36,4 +36,19 @@ module.exports = function buildIndex(hexo) {
 
   hexo.locals.set('foam_index', map);
   return map;
-};
+}
+
+function resolveWikiTarget(index, link) {
+  const lookup = getWikiTargetLookup(link);
+  let post = null;
+
+  for (const key of lookup.keys) {
+    post = index.get(key);
+    if (post) break;
+  }
+
+  return Object.assign({}, lookup, { post });
+}
+
+module.exports = buildIndex;
+module.exports.resolveWikiTarget = resolveWikiTarget;

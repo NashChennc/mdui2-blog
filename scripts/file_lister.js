@@ -16,13 +16,13 @@ function escapeHtml(text) {
   return String(text).replace(/[&<>"']/g, m => map[m]);
 }
 
-/**
- * URL 编码函数，确保 URL 安全
- */
-function escapeUrl(url) {
-  if (!url) return '';
-  // 只转义必要的字符，保留 URL 结构
-  return String(url).replace(/['"<>]/g, '');
+function encodeUrlSegment(value) {
+  return encodeURIComponent(String(value || ''));
+}
+
+function sourceUrl(root, folderName, fileName) {
+  const base = String(root || '/').replace(/\/?$/, '/');
+  return base + encodeUrlSegment(folderName) + '/' + encodeUrlSegment(fileName);
 }
 
 /**
@@ -107,11 +107,10 @@ hexo.extend.tag.register('list_files', function(args) {
   files.forEach(file => {
     // 验证文件名，防止路径遍历
     const safeFileName = file.replace(/\.\./g, '').replace(/[<>"']/g, '');
-    // 拼接文件 URL
-    const fileUrl = hexo.config.root + escapeUrl(folderName) + '/' + escapeUrl(safeFileName);
+    const fileUrl = sourceUrl(hexo.config.root, folderName, safeFileName);
     
     // 生成列表项，转义文件名显示
-    html += `<li><a href="${fileUrl}" target="_blank">${escapeHtml(file)}</a></li>`;
+    html += `<li><a href="${fileUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(file)}</a></li>`;
   });
   
   html += '</ul></div>';

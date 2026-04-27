@@ -15,17 +15,23 @@
     <nav class="site-footer__social" aria-label="<%= __('topbar_social_links') %>">
       <% socialKeys.forEach(function (k) { %>
         <% var s = social[k]; %>
+        <% var socialHref = mdblog_safe_url(s && s.link); %>
+        <% if (socialHref) { %>
+        <% var socialLabel = (s && (s.text || s.link)) || k; %>
+        <% var socialIconClass = mdblog_class_list(s && s.icon); %>
+        <% var socialColorClass = mdblog_class_list(s && s.color); %>
       <mdui-button-icon
         class="site-footer__social-btn"
         variant="standard"
-        href="<%- url_for(s.link) %>"
+        href="<%= url_for(socialHref) %>"
         target="_blank"
         rel="noopener noreferrer"
-        title="<%- s.text || s.link %>"
-        aria-label="<%- s.text || s.link %>"
+        title="<%= socialLabel %>"
+        aria-label="<%= socialLabel %>"
       >
-        <i class="<%- s.icon %> <%- s.color %> site-footer__social-icon" aria-hidden="true"></i>
+        <i class="<%= socialIconClass %> <%= socialColorClass %> site-footer__social-icon" aria-hidden="true"></i>
       </mdui-button-icon>
+        <% } %>
       <% }); %>
     </nav>
     </div>

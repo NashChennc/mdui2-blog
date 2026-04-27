@@ -12,10 +12,10 @@
             fallbackImage = url_for('image/banner/' + bannerImageList[randomIndex]);
         } else {
             // 兜底图片 (如果文件夹为空)
-            fallbackImage = theme.banner.image
+            fallbackImage = theme.banner && theme.banner.image
         }
     %>
-    <div class="hero-bg" style="--banner-bg-image: url(<%- theme.banner.image || config.head_bgpaper || fallbackImage %>);"></div>
+    <div class="hero-bg" style='--banner-bg-image: url("<%- mdblog_safe_css_url((theme.banner && theme.banner.image) || config.head_bgpaper || fallbackImage) %>");'></div>
     <div class="hero-mask"></div>
 
     <div class="hero-content hero-content--index">

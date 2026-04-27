@@ -42,6 +42,7 @@ category_page_default_lede: ""
 tag_page_default_lede: ""
 index_page_default_lede: ""
 category_card_kind: "笔记"
+post_backlinks_title: 这篇文章被哪篇引用
 prev_post: 上一篇
 next_post: 下一篇
 word_count: 字数
@@ -57,7 +58,6 @@ folder_not_found: "目录不存在: source/%s"
 read_dir_failed: 读取目录失败
 no_files: 暂无文件。
 page_not_created: 页面未创建
-topbar_profile_open: 打开作者名片与社交链接
 topbar_social_links: 社交链接
 theme_toggle_to_dark: 切换到深色模式
 theme_toggle_to_light: 切换到浅色模式

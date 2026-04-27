@@ -22,7 +22,8 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%= page.title ? page.title + ' - ' : '' %><%= config.title %></title>
+  <% const tabPageTitle = page.blog_title || page.title; %>
+  <title><%= tabPageTitle ? tabPageTitle + ' - ' : '' %><%= config.title %></title>
 
   <!-- MDUI 2 核心样式（先于图标与站点覆盖） -->
   <link rel="stylesheet" href="<%- url_for('mdui2/mdui.css') %>">
@@ -31,7 +32,13 @@
   <link rel="stylesheet" href="<%- url_for('mdui2/mdui-material-font-aliases.css') %>">
 
   <!-- Font Awesome 6 for brand icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
 
   <% if (!theme.katex || theme.katex.enable !== false) { %>
   <!-- KaTeX CSS -->
@@ -49,7 +56,6 @@
     'css/categories-postinfo.css',
     'css/footer.css',
     'css/banner-page.css',
-    'css/sidebar-footer.css',
     'css/article-prose.css',
     'css/index-taxonomy.css',
     'css/site-search.css'
@@ -60,6 +66,18 @@
   <link rel="stylesheet" href="<%- url_for('css/custom.css') %>">
 
   <meta name="theme-color" content="<%= theme.theme_color || '#6750A4' %>">
+
+  <% const googleAnalyticsId = mdblog_analytics_id(theme.google_analytics || config.google_analytics); %>
+  <% if (googleAnalyticsId) { %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= googleAnalyticsId %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', <%- mdblog_json(googleAnalyticsId) %>);
+  </script>
+  <% } %>
 </head>
 <body id="top">
   
@@ -102,7 +120,7 @@
   <script src="<%- url_for('mermaid/mermaid.min.js') %>"></script>
   <script>
     (function () {
-      var m = <%- JSON.stringify(config.mermaid) %>;
+      var m = <%- mdblog_json(config.mermaid || {}) %>;
       var opts = Object.assign({}, m);
       delete opts.enable;
       delete opts.version;

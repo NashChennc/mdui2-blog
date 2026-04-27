@@ -1,6 +1,11 @@
 <!-- 全宽 Banner -->
 <%- partial('partial/banner') %>
 
+<%
+    var backlinks = post_backlinks(page);
+    var backlinkTitle = __('post_backlinks_title');
+%>
+
 <div class="page-shell app-container">
     <div class="page-grid page-grid--post<%= page.toc === false ? ' page-grid--single' : '' %>">
         <!-- 文章内容 -->
@@ -8,13 +13,13 @@
         <main class="page-main page-main--post">
             <mdui-card variant="filled" class="post-page-card">
                 <div class="post-page-card__header">
-                    <h1 class="post-page__title note-card-title"><%- page.blog_title || page.title %></h1>
+                    <h1 class="post-page__title note-card-title"><%= page.blog_title || page.title %></h1>
                     <div class="post-page__meta-row">
                         <span class="note-date"><%= date(page.updated, 'YYYY MMM DD') %></span>
                         <% if (page.categories && page.categories.length) { %>
                             <div class="post-page__meta--cats">
                                 <% page.categories.each(cat => { %>
-                                    <a href="<%- url_for(cat.path) %>" class="note-tag"><%- cat.name %></a>
+                                    <a href="<%= url_for(cat.path) %>" class="note-tag"><%= cat.name %></a>
                                 <% }) %>
                             </div>
                         <% } %>
@@ -26,6 +31,16 @@
                     <div class="mdui-prose">
                         <%- page.content %>
                     </div>
+                    <% if (backlinks.length) { %>
+                    <section class="post-backlinks" aria-labelledby="post-backlinks-title">
+                        <h2 id="post-backlinks-title" class="post-backlinks__title"><%= backlinkTitle %></h2>
+                        <div class="post-backlinks__list">
+                            <% backlinks.forEach(function (backlinkPost) { %>
+                                <a class="post-backlinks__link" href="<%- url_for(backlinkPost.path) %>"><%= backlinkPost.blog_title || backlinkPost.title %></a>
+                            <% }) %>
+                        </div>
+                    </section>
+                    <% } %>
                 </div>
                 <%- partial('partial/link') %>
             </mdui-card>

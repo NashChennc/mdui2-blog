@@ -1,7 +1,17 @@
 <%
   var coverImageUrl = post_cover_url(post);
-  var descSource = post.description || post.excerpt || post.content;
-  var excerptPlain = strip_html(descSource).replace(/\s+/g, ' ').trim();
+  var safeCoverImageUrl = mdblog_safe_url(coverImageUrl);
+  var excerptLimit = 180;
+  var getPlainExcerpt = function (value) {
+    return strip_html(value || '').replace(/\s+/g, ' ').trim();
+  };
+  var excerptPlain =
+    getPlainExcerpt(post.description) ||
+    getPlainExcerpt(post.excerpt) ||
+    getPlainExcerpt(post.content);
+  if (excerptPlain.length > excerptLimit) {
+    excerptPlain = excerptPlain.slice(0, excerptLimit).trim() + '...';
+  }
   var tagLabel = '';
   if (post.tags && post.tags.length) {
     post.tags.each(function (tag) {
@@ -26,8 +36,8 @@
       : 'lazy';
 %>
 <mdui-card clickable variant="filled" href="<%- url_for(post.path) %>" class="note-card">
-  <% if (coverImageUrl) { %>
-  <img src="<%= coverImageUrl %>" class="note-cover" alt="<%= post.title %>" loading="<%= coverLoading %>">
+  <% if (safeCoverImageUrl) { %>
+  <img src="<%= safeCoverImageUrl %>" class="note-cover" alt="<%= post.title %>" loading="<%= coverLoading %>">
   <% } else { %>
   <div class="note-cover-placeholder" aria-hidden="true">
     <mdui-icon name="image" class="note-cover-placeholder__icon"></mdui-icon>

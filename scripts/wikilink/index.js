@@ -5,6 +5,9 @@
 
 const processImages = require('./image-plugin');
 const createWikiLinkProcessor = require('./wikilink-plugin');
+const registerBacklinkHelper = require('./backlinks');
+
+registerBacklinkHelper(hexo);
 
 // 注册 Priority 9: 图片处理
 hexo.extend.filter.register('before_post_render', processImages, 9);

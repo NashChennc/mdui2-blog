@@ -1,5 +1,5 @@
 {
-  "name": "hexo-theme-mdblog-vendor",
+  "name": "hexo-theme-mdui2-blog-vendor",
   "private": true,
   "scripts": {
     "postinstall": "node scripts/vendor-mdui2.js",

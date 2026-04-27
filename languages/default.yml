@@ -42,6 +42,7 @@ category_page_default_lede: ""
 tag_page_default_lede: ""
 index_page_default_lede: ""
 category_card_kind: "Note"
+post_backlinks_title: Referenced by
 prev_post: Previous
 next_post: Next
 word_count: Word Count
@@ -57,7 +58,6 @@ folder_not_found: "Folder not found: source/%s"
 read_dir_failed: Failed to read directory
 no_files: No files available.
 page_not_created: Page not created
-topbar_profile_open: Open author profile and social links
 topbar_social_links: Social links
 theme_toggle_to_dark: Switch to dark mode
 theme_toggle_to_light: Switch to light mode

@@ -52,7 +52,6 @@ folder_not_found: "Mappe ikke funnet: source/%s"
 read_dir_failed: Kunne ikke lese mappe
 no_files: Ingen filer tilgjengelig.
 page_not_created: Side ikke opprettet
-topbar_profile_open: Åpne forfatterprofil og sosiale lenker
 topbar_social_links: Sosiale lenker
 theme_toggle_to_dark: Bytt til mørk modus
 theme_toggle_to_light: Bytt til lys modus

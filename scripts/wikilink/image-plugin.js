@@ -1,4 +1,4 @@
-const { escapeHtml } = require('./utils');
+const { escapeHtml, escapeUrl } = require('./utils');
 
 const WIKI_IMAGE_RE = /!\[\[(.*?)(?:\|(.*?))?\]\]/g;
 
@@ -7,7 +7,7 @@ function replaceWikiImageTokens(str) {
     let filename = link.trim();
     filename = filename.replace(/\.\./g, '').replace(/[<>"']/g, '');
     const altText = caption ? escapeHtml(caption.trim()) : '';
-    return `<img src="/files/${filename}" alt="${altText}" />`;
+    return `<img src="${escapeUrl('/files/' + filename)}" alt="${altText}" />`;
   });
 }
 
