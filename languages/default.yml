@@ -42,6 +42,19 @@ category_page_default_lede: ""
 tag_page_default_lede: ""
 index_page_default_lede: ""
 category_card_kind: "Note"
+activity_heatmap_eyebrow: Activity
+activity_heatmap_title: Contribution heatmap
+activity_heatmap_filters: Heatmap filters
+activity_heatmap_year: Year
+activity_heatmap_tag: Tag
+activity_heatmap_all_tags: All tags
+activity_heatmap_post: post
+activity_heatmap_posts: posts
+activity_heatmap_no_posts: No posts
+activity_heatmap_detail_prefix: Activity around
+activity_heatmap_close_detail: Close detail
+activity_heatmap_less: Less
+activity_heatmap_more: More
 post_backlinks_title: Referenced by
 prev_post: Previous
 next_post: Next

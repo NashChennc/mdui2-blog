@@ -62,3 +62,16 @@ default_author: 作者
 category_page_default_lede: ""
 tag_page_default_lede: ""
 index_page_default_lede: ""
+activity_heatmap_eyebrow: 活躍度
+activity_heatmap_title: 文章熱力圖
+activity_heatmap_filters: 熱力圖篩選
+activity_heatmap_year: 年份
+activity_heatmap_tag: 標籤
+activity_heatmap_all_tags: 全部標籤
+activity_heatmap_post: 篇文章
+activity_heatmap_posts: 篇文章
+activity_heatmap_no_posts: 暫無文章
+activity_heatmap_detail_prefix: 附近動態
+activity_heatmap_close_detail: 關閉詳情
+activity_heatmap_less: 少
+activity_heatmap_more: 多

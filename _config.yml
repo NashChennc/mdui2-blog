@@ -88,10 +88,13 @@ category_page:
       class_description: 记录我尚未完全理解的事物。
     散文:
       class_name: 散文  Essays
-      class_description: 只是一些比较长的文字。
+      class_description: 只是一些散落的文字。
     碎碎念:
       class_name: 碎碎念  Ramblings
       class_description: 突发奇想，还有突发恶疾。
+    流水账:
+      class_name: 流水账  Events
+      class_description: 有些事情不记下来真的会忘。
     专栏:
       class_name: 专栏  Columns
       class_description: 一些连续的文章。
@@ -215,6 +218,11 @@ index_page:
 # 首页 / 列表页顶部分类·标签芯片：标签超过此数量时折叠，点「展开」再显示其余（0 = 始终全部展示）
 index_taxonomy:
   tags_visible_initial: 8
+
+# GitHub 风格 activity heatmap（归档 / 分类 / 标签页）
+activity_heatmap:
+  enable: true
+  detail_window_days: 7
 
 # 索引页小部件配置（当前未使用）
 index_widgets:

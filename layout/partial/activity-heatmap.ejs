@@ -1,0 +1,84 @@
+<%
+  var heatmapConfig = theme.activity_heatmap || {};
+  var heatmapEnabled = heatmapConfig.enable !== false;
+  var heatmapPostsInput = typeof heatmapPosts !== 'undefined' ? heatmapPosts : (page.posts || site.posts);
+  var heatmapScopeName = typeof heatmapScope !== 'undefined' ? heatmapScope : '';
+  var heatmapData = activity_heatmap_data(heatmapPostsInput, { scope: heatmapScopeName });
+  var heatmapIdBase = String((page && page.path) || heatmapScopeName || 'site')
+    .replace(/[^A-Za-z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'site';
+  var heatmapId = 'activity-heatmap-' + heatmapIdBase;
+  var heatmapDetailWindow = parseInt(heatmapConfig.detail_window_days, 10);
+  if (!Number.isFinite(heatmapDetailWindow) || heatmapDetailWindow < 0) {
+    heatmapDetailWindow = 14;
+  }
+  var heatmapText = function (key, fallback) {
+    var value = __(key);
+    return value && value !== key ? value : fallback;
+  };
+%>
+<% if (heatmapEnabled) { %>
+<div
+  class="activity-heatmap"
+  id="<%= heatmapId %>"
+  data-detail-window-days="<%= heatmapDetailWindow %>"
+  data-label-post="<%= heatmapText('activity_heatmap_post', 'post') %>"
+  data-label-posts="<%= heatmapText('activity_heatmap_posts', 'posts') %>"
+  data-label-no-posts="<%= heatmapText('activity_heatmap_no_posts', 'No posts') %>"
+  data-label-less="<%= heatmapText('activity_heatmap_less', 'Less') %>"
+  data-label-more="<%= heatmapText('activity_heatmap_more', 'More') %>"
+>
+  <div class="activity-heatmap__inner">
+    <div class="activity-heatmap__header">
+      <div class="activity-heatmap__title-block">
+        <p class="activity-heatmap__summary" data-activity-summary></p>
+      </div>
+
+    </div>
+
+    <div class="activity-heatmap__viewport" data-activity-viewport>
+      <div class="activity-heatmap__calendar" data-activity-calendar>
+        <div class="activity-heatmap__years" data-activity-years></div>
+        <div class="activity-heatmap__months" data-activity-months></div>
+        <div class="activity-heatmap__body">
+          <div class="activity-heatmap__weekdays" data-activity-weekdays aria-hidden="true"></div>
+          <div class="activity-heatmap__cells" data-activity-cells role="grid" aria-label="<%= heatmapText('activity_heatmap_title', 'Contribution heatmap') %>"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="activity-heatmap__legend" aria-hidden="true">
+      <span data-activity-less><%= heatmapText('activity_heatmap_less', 'Less') %></span>
+      <span class="activity-heatmap__legend-swatch" data-level="0"></span>
+      <span class="activity-heatmap__legend-swatch" data-level="1"></span>
+      <span class="activity-heatmap__legend-swatch" data-level="2"></span>
+      <span class="activity-heatmap__legend-swatch" data-level="3"></span>
+      <span class="activity-heatmap__legend-swatch" data-level="4"></span>
+      <span data-activity-more><%= heatmapText('activity_heatmap_more', 'More') %></span>
+    </div>
+
+    <section class="activity-heatmap__detail" data-activity-detail hidden>
+      <div class="activity-heatmap__detail-head">
+        <div>
+          <h3 class="activity-heatmap__detail-title" data-activity-detail-title></h3>
+          <p class="activity-heatmap__detail-summary" data-activity-detail-summary></p>
+        </div>
+        <mdui-button-icon
+          variant="standard"
+          icon="close"
+          class="activity-heatmap__detail-close"
+          data-activity-detail-close
+          aria-label="<%= heatmapText('activity_heatmap_close_detail', 'Close detail') %>"
+        ></mdui-button-icon>
+      </div>
+      <div class="activity-heatmap__detail-list" data-activity-detail-list></div>
+    </section>
+
+    <div class="activity-heatmap__empty" data-activity-empty hidden>
+      <mdui-icon name="calendar_today" class="activity-heatmap__empty-icon"></mdui-icon>
+      <span><%= heatmapText('activity_heatmap_no_posts', 'No posts') %></span>
+    </div>
+  </div>
+  <script type="application/json" data-activity-data><%- mdblog_json(heatmapData) %></script>
+</div>
+<% } %>

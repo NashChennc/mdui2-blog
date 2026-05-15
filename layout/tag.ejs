@@ -16,6 +16,7 @@
                     <p class="notes-subtitle"><%= tagLede %></p>
                     <% } %>
                 </header>
+                <%- partial('partial/activity-heatmap', { heatmapPosts: page.posts, heatmapScope: 'tag' }) %>
                 <%- partial('partial/index-taxonomy', { taxonomyShowCategories: false }) %>
                 <div class="notes-grid">
                 <% page.posts.sort('title').sort('-updated').each(function(post){ %>

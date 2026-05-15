@@ -5,6 +5,7 @@
                 <header class="notes-header">
                     <h1 class="notes-title"><%= __('categories') %></h1>
                 </header>
+                <%- partial('partial/activity-heatmap', { heatmapPosts: site.posts, heatmapScope: 'archive' }) %>
                 <% if (site.categories.length){ %>
                 <div class="archives-category-stack">
                     <% site.categories.sort('name').each(function(item){ %>

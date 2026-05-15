@@ -36,6 +36,7 @@
                     <p class="notes-subtitle"><%= categoryLede %></p>
                     <% } %>
                 </header>
+                <%- partial('partial/activity-heatmap', { heatmapPosts: page.posts, heatmapScope: 'category' }) %>
                 <%- partial('partial/index-taxonomy', { taxonomyShowCategories: false }) %>
                 <div class="notes-grid">
                 <% page.posts.sort('title').sort('-updated').each(function(post){ %>
