@@ -301,7 +301,7 @@
   display: block;
   overflow-x: auto;
   overflow-y: hidden;
-  height: 120px;
+  height: 150px;
   padding: 1rem 0 1.5rem;
   scrollbar-width: thin;
 }
@@ -319,7 +319,7 @@
 
 .timeline-item {
   position: absolute;
-  top: 1rem;
+  top: calc(var(--detail-axis-top) - 5px);
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -329,6 +329,17 @@
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+}
+
+.timeline-item--above {
+  top: auto;
+  bottom: calc(var(--detail-axis-top) - 5px);
+  flex-direction: column;
+}
+
+.timeline-item--above .timeline-marker {
+  margin-bottom: 0;
+  margin-top: 0.6rem;
 }
 
 .timeline-marker {
@@ -366,7 +377,7 @@
 }
 
 .activity-heatmap__detail-list-wrap {
-  --detail-axis-top: 1.25rem;
+  --detail-axis-top: 50%;
   --detail-hint-size: 36px;
   position: relative;
 }
@@ -455,6 +466,6 @@
   }
 
   .activity-heatmap__detail-list {
-    height: 110px;
+    height: 140px;
   }
 }

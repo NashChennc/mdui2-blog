@@ -172,7 +172,7 @@
       var ITEM_WIDTH = probe.getBoundingClientRect().width;
       document.body.removeChild(probe);
 
-      var MIN_GAP = 6;
+      var MIN_GAP = 32;
       var PIXELS_PER_DAY = ITEM_WIDTH + MIN_GAP + 14;
 
       var firstPostTime = dateFromKey(windowPosts[0].date).getTime();
@@ -186,29 +186,39 @@
       list.style.setProperty('--timeline-scroll-width', scrollWidth + 'px');
 
       var usableWidth = scrollWidth - ITEM_WIDTH;
-      var lastOccupiedRightEdge = 0;
+      var STEP = (ITEM_WIDTH + MIN_GAP) / 2;
+      var prevDate = null;
+      var prevCenterX = -ITEM_WIDTH;
+      var prevSide = 'below';
 
       windowPosts.forEach(function (item) {
         var postTime = dateFromKey(item.date).getTime();
         var ratio = (postTime - windowStartTime) / windowDuration;
         var idealX = (ITEM_WIDTH / 2) + ratio * usableWidth;
-        var leftEdge = idealX - (ITEM_WIDTH / 2);
+        var side;
+        var centerX;
 
-        if (leftEdge < lastOccupiedRightEdge) {
-          leftEdge = lastOccupiedRightEdge;
-          idealX = leftEdge + (ITEM_WIDTH / 2);
+        if (item.date !== prevDate) {
+          side = 'below';
+          var prevRightEdge = prevCenterX + ITEM_WIDTH / 2;
+          if (idealX - ITEM_WIDTH / 2 < prevRightEdge + MIN_GAP) {
+            centerX = prevRightEdge + MIN_GAP + ITEM_WIDTH / 2;
+          } else {
+            centerX = idealX;
+          }
+        } else {
+          side = prevSide === 'below' ? 'above' : 'below';
+          centerX = prevCenterX + STEP;
         }
 
-        lastOccupiedRightEdge = leftEdge + ITEM_WIDTH + MIN_GAP;
+        prevDate = item.date;
+        prevCenterX = centerX;
+        prevSide = side;
 
         var timelineItem = document.createElement('a');
-        timelineItem.className = 'timeline-item';
+        timelineItem.className = 'timeline-item' + (side === 'above' ? ' timeline-item--above' : '');
         timelineItem.href = item.post.url || '#';
-        timelineItem.style.left = idealX + 'px';
-
-        var marker = document.createElement('div');
-        marker.className = 'timeline-marker';
-        timelineItem.appendChild(marker);
+        timelineItem.style.left = centerX + 'px';
 
         var content = document.createElement('div');
         content.className = 'timeline-content';
@@ -223,11 +233,20 @@
         title.textContent = item.post.title || '(untitled)';
         content.appendChild(title);
 
-        timelineItem.appendChild(content);
+        var marker = document.createElement('div');
+        marker.className = 'timeline-marker';
+
+        if (side === 'above') {
+          timelineItem.appendChild(content);
+          timelineItem.appendChild(marker);
+        } else {
+          timelineItem.appendChild(marker);
+          timelineItem.appendChild(content);
+        }
         list.appendChild(timelineItem);
       });
 
-      var finalScrollWidth = Math.max(scrollWidth, lastOccupiedRightEdge - MIN_GAP);
+      var finalScrollWidth = Math.max(scrollWidth, (prevCenterX + ITEM_WIDTH / 2) - MIN_GAP);
       list.style.setProperty('--timeline-scroll-width', finalScrollWidth + 'px');
     }
 
@@ -318,7 +337,9 @@
     var end = endOfWeek(maxDate);
     var dayCount = Math.round((end.getTime() - start.getTime()) / DAY_MS) + 1;
     var yearBoundaries = maxDate.getFullYear() - minDate.getFullYear();
-    var weekCount = Math.ceil(dayCount / 7) + yearBoundaries;
+    var totalMonths = (maxDate.getFullYear() - minDate.getFullYear()) * 12 + maxDate.getMonth() - minDate.getMonth() + 1;
+    var monthBoundaries = Math.max(0, totalMonths - 1 - yearBoundaries);
+    var weekCount = Math.ceil(dayCount / 7) + yearBoundaries + monthBoundaries;
     root.style.setProperty('--activity-week-count', String(weekCount));
 
     var minYear = minDate.getFullYear();
@@ -347,6 +368,19 @@
       prevYear = d.getFullYear();
 
       if (d.getDate() === 1) {
+        var monthKey = d.getFullYear() + '-' + d.getMonth();
+
+        // Insert spacer column between months (skip first rendered month and January, which has year spacer)
+        if (seenMonths.size > 0 && d.getMonth() !== 0) {
+          for (var ms = 0; ms < 7; ms++) {
+            var mSpacer = document.createElement('div');
+            mSpacer.className = 'activity-heatmap__spacer';
+            mSpacer.setAttribute('aria-hidden', 'true');
+            cells.appendChild(mSpacer);
+          }
+          index += 7;
+        }
+
         // Year label at first month of each year
         if (years && !seenYears.has(d.getFullYear())) {
           seenYears.add(d.getFullYear());
@@ -357,7 +391,6 @@
           years.appendChild(yearLabel);
         }
 
-        var monthKey = d.getFullYear() + '-' + d.getMonth();
         if (!seenMonths.has(monthKey)) {
           seenMonths.add(monthKey);
           var month = document.createElement('span');
