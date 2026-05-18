@@ -27,6 +27,13 @@
 
   <div class="topbar-end">
     <mdui-button-icon
+      variant="standard"
+      icon="calendar_month"
+      href="<%- url_for('/archives') %>"
+      class="topbar-archive-btn"
+      aria-label="<%= __('archives') %>"
+    ></mdui-button-icon>
+    <mdui-button-icon
       id="site-search-toggle"
       variant="standard"
       icon="search"
