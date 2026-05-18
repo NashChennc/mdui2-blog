@@ -23,6 +23,13 @@
                                 <% }) %>
                             </div>
                         <% } %>
+                        <% if (page.tags && page.tags.length) { %>
+                            <div class="post-page__meta--cats">
+                                <% page.tags.each(tag => { %>
+                                    <a href="<%= url_for(tag.path) %>" class="note-tag"><%= tag.name %></a>
+                                <% }) %>
+                            </div>
+                        <% } %>
                         <span class="note-read"><%= min2read(page.content, { cn: 200, en: 500 }) %> <%= __('min_read') %></span>
                     </div>
                     <mdui-divider></mdui-divider>
