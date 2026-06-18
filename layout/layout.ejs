@@ -83,18 +83,24 @@
 <body id="top">
   
   <!-- Header/AppBar -->
-  <%- partial('partial/topbar') %>
-  <%- partial('partial/site-search-dock') %>
+  <mdui-layout>
+    <%- partial('partial/topbar') %>
+    <%- partial('partial/site-search-dock') %>
 
-  <!-- Main Content (Layout control moved to individual views) -->
-  <div id="main-content">
-    <%- body %>
-  </div>
-  <!-- Footer -->
-  <%- partial('partial/footer') %>
+    <mdui-layout-main>
+      <!-- Main Content (page-level layout lives in individual views) -->
+      <div id="main-content">
+        <%- body %>
+      </div>
+      <!-- Footer -->
+      <%- partial('partial/footer') %>
+    </mdui-layout-main>
+  </mdui-layout>
+  <%- partial('partial/category-drawer') %>
 
   <!-- Scripts -->
   <script src="<%- url_for('mdui2/mdui.global.js') %>"></script>
+  <script src="<%- url_for('/js/site-navigation.js') %>" defer></script>
   <script src="<%- url_for('/js/note-card-layout.js') %>" defer></script>
   <script src="<%- url_for('/js/theme-toggle.js') %>" defer></script>
   <script src="<%- url_for('/js/site-search.js') %>" defer></script>

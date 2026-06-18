@@ -11,7 +11,7 @@
                     }
                 %>
                 <header class="notes-header">
-                    <h1 class="notes-title"><%= tagName %></h1>
+                    <h1 class="notes-title"><%= tagName %><span class="notes-post-count"><%= page.posts.length %></span></h1>
                     <% if (tagLede) { %>
                     <p class="notes-subtitle"><%= tagLede %></p>
                     <% } %>

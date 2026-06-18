@@ -31,7 +31,7 @@
                     }
                 %>
                 <header class="notes-header">
-                    <h1 class="notes-title"><%= displayTitle %></h1>
+                    <h1 class="notes-title"><%= displayTitle %><span class="notes-post-count"><%= page.posts.length %></span></h1>
                     <% if (categoryLede) { %>
                     <p class="notes-subtitle"><%= categoryLede %></p>
                     <% } %>

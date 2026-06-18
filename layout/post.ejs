@@ -4,10 +4,14 @@
 <%
     var backlinks = post_backlinks(page);
     var backlinkTitle = __('post_backlinks_title');
+    var postTocHtml = page.toc !== false
+        ? toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 })
+        : '';
+    var hasPostToc = postTocHtml && String(postTocHtml).trim();
 %>
 
 <div class="page-shell app-container">
-    <div class="page-grid page-grid--post<%= page.toc === false ? ' page-grid--single' : '' %>">
+    <div class="page-grid page-grid--post<%= hasPostToc ? '' : ' page-grid--single' %>">
         <!-- 文章内容 -->
 
         <main class="page-main page-main--post">
@@ -52,13 +56,13 @@
                 <%- partial('partial/link') %>
             </mdui-card>
         </main>
-        <% if (page.toc !== false) { %>
+        <% if (hasPostToc) { %>
         <aside class="page-sidebar page-sidebar--post sticky-sidebar" id="post-sidebar">
             <mdui-card variant="filled" class="post-toc-card toc-full-height">
                 <div class="post-toc-inner">
                     <div class="post-toc__title"><%= __('toc') %></div>
                     <div class="post-toc-scroll mdui-prose">
-                        <%- toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 }) %>
+                        <%- postTocHtml %>
                     </div>
                 </div>
             </mdui-card>

@@ -1,31 +1,60 @@
-<mdui-top-app-bar class="app-top-bar">
-  <div class="topbar-home">
-    <% if (site.categories.length) { %>
-      <mdui-button
-        variant="text"
-        href="<%- url_for('/') %>"
-        class="topbar-nav-btn topbar-home__btn<%= is_home() ? ' topbar-nav-btn--active' : '' %>"
-        <% if (is_home()) { %>aria-current="page"<% } %>
-      ><%= __('home') %></mdui-button>
-    <% } else { %>
-      <mdui-top-app-bar-title><%= config.title %></mdui-top-app-bar-title>
-    <% } %>
-  </div>
+<%
+  var topbarTocHtml = '';
+  if (page.layout === 'post' && page.toc !== false && page.content) {
+    topbarTocHtml = toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 });
+  }
+  var hasTopbarTocDrawer = topbarTocHtml && String(topbarTocHtml).trim();
+  var hasTopbarCategories = site.categories.length;
+  var hasTopbarDrawer = hasTopbarCategories || hasTopbarTocDrawer;
+%>
 
-  <% if (site.categories.length) { %>
-    <nav class="topbar-nav mdui-prose mdui-prose--inline-nav" aria-label="<%= __('categories') %>">
-      <% site.categories.sort('length').sort('-name').each(item => { %>
-        <% if (item.posts.length) { %>
-      <a
-        href="<%- url_for('categories/' + item.name) %>"
-        <% if (is_category() && page.category === item.name) { %>aria-current="page"<% } %>
-      ><%= item.name %> · <%= item.posts.length %></a>
-        <% } %>
-      <% }); %>
-    </nav>
+<mdui-top-app-bar class="app-top-bar" scroll-behavior="elevate">
+  <% if (hasTopbarDrawer) { %>
+    <mdui-button-icon
+      id="site-nav-toggle"
+      class="topbar-mobile-control"
+      variant="standard"
+      icon="menu"
+      aria-label="<%= hasTopbarTocDrawer ? __('toc') : __('categories') %>"
+      aria-expanded="false"
+      aria-haspopup="true"
+      aria-controls="site-category-drawer"
+    ></mdui-button-icon>
   <% } %>
 
-  <div class="topbar-end">
+  <mdui-button-icon
+    variant="standard"
+    icon="home"
+    href="<%- url_for('/') %>"
+    class="topbar-mobile-home-btn"
+    aria-label="<%= __('home') %>"
+    <% if (is_home()) { %>selected aria-current="page"<% } %>
+  ></mdui-button-icon>
+
+  <% if (hasTopbarCategories) { %>
+  <div class="topbar-desktop-spacer" aria-hidden="true"></div>
+
+  <nav class="topbar-desktop-nav" aria-label="<%= __('categories') %>">
+    <a
+      href="<%- url_for('/') %>"
+      class="topbar-desktop-link topbar-desktop-home__link<%= is_home() ? ' topbar-desktop-link--active' : '' %>"
+      <% if (is_home()) { %>aria-current="page"<% } %>
+    ><%= __('home') %></a>
+    <% site.categories.sort('length').sort('-name').each(function (item) { %>
+      <% if (item.posts.length) { %>
+    <a
+      href="<%- url_for('categories/' + item.name) %>"
+      class="topbar-desktop-link topbar-category-link<%= is_category() && page.category === item.name ? ' topbar-desktop-link--active' : '' %>"
+      <% if (is_category() && page.category === item.name) { %>aria-current="page"<% } %>
+    ><%= item.name %> · <%= item.posts.length %></a>
+      <% } %>
+    <% }); %>
+  </nav>
+  <% } %>
+
+  <mdui-top-app-bar-title class="topbar-title<%= hasTopbarCategories ? ' topbar-title--mobile' : '' %>"><%= config.title %></mdui-top-app-bar-title>
+
+  <div class="topbar-actions">
     <mdui-button-icon
       variant="standard"
       icon="calendar_month"
