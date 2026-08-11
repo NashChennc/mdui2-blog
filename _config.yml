@@ -164,7 +164,9 @@ excerpt_link: Read More
 favicon: /favicon.png
 
 # 浏览器 UI 主题色（meta theme-color），建议与品牌主色一致
-theme_color: '#6750A4'
+# 桔梗 #5654A2 饱和 #433BCC 4B00FF
+# 矢车菊 #6495ED 饱和 #3A7DF6 156BFF
+theme_color: '#6495ED'
 
 # ============================================
 # 页脚（社交图标 + 底栏导航 + 版权）
