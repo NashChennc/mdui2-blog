@@ -17,12 +17,11 @@
   aria-label="<%= hasDrawerToc ? __('toc') : __('categories') %>"
 >
   <% if (hasDrawerToc) { %>
-  <section class="site-category-drawer__section site-category-drawer__toc" aria-labelledby="site-drawer-toc-title">
-    <div id="site-drawer-toc-title" class="site-category-drawer__section-title"><%= __('toc') %></div>
+  <nav class="site-category-drawer__section site-category-drawer__toc" aria-label="<%= __('toc') %>">
     <div class="post-toc-scroll mdui-prose">
       <%- drawerTocHtml %>
     </div>
-  </section>
+  </nav>
   <% } %>
 
   <% if (hasDrawerToc && hasDrawerCategories) { %>

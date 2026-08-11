@@ -58,14 +58,13 @@
         </main>
         <% if (hasPostToc) { %>
         <aside class="page-sidebar page-sidebar--post sticky-sidebar" id="post-sidebar">
-            <mdui-card variant="filled" class="post-toc-card toc-full-height">
+            <nav class="post-toc-panel toc-full-height" aria-label="<%= __('toc') %>">
                 <div class="post-toc-inner">
-                    <div class="post-toc__title"><%= __('toc') %></div>
                     <div class="post-toc-scroll mdui-prose">
                         <%- postTocHtml %>
                     </div>
                 </div>
-            </mdui-card>
+            </nav>
         </aside>
         <% } %>
     </div>
