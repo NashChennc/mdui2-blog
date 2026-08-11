@@ -1,5 +1,7 @@
 <!-- 全宽 Banner -->
+<% if (theme.banner && theme.banner.post && theme.banner.post.enable) { %>
 <%- partial('partial/banner') %>
+<% } %>
 
 <%
     var backlinks = post_backlinks(page);

@@ -50,17 +50,21 @@
     'css/tokens.css',
     'css/global-layout.css',
     'css/topbar.css',
-    'css/hero.css',
     'css/motion-scroll-reveal.css',
     'css/lists-cards.css',
     'css/categories-postinfo.css',
     'css/footer.css',
-    'css/banner-page.css',
     'css/article-prose.css',
     'css/index-taxonomy.css',
     'css/activity-heatmap.css',
     'css/site-search.css'
   ]; %>
+  <% if (theme.banner && theme.banner.hero && theme.banner.hero.enable) { %>
+  <link rel="stylesheet" href="<%- url_for('css/hero.css') %>">
+  <% } %>
+  <% if (theme.banner && ((theme.banner.hero && theme.banner.hero.enable) || (theme.banner.post && theme.banner.post.enable))) { %>
+  <link rel="stylesheet" href="<%- url_for('css/banner-page.css') %>">
+  <% } %>
   <% mdblogCss.forEach(function (href) { %>
   <link rel="stylesheet" href="<%- url_for(href) %>">
   <% }); %>

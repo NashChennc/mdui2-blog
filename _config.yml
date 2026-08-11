@@ -21,7 +21,10 @@
 # 内页多列挤碰、换行、对齐等由 source/js/banner-title-layout.json + banner-title-layout.js 调整（可站点 source/js/ 覆盖）
 # ============================================
 banner:
-  enable: true
+  hero:
+    enable: false
+  post:
+    enable: false
   image: /image/banner.jpeg
 
   # 首页主标题：多行，每行为「列」数组；每列 upper=小字（法语）/ lower=大字（中文）

@@ -1,5 +1,6 @@
 
 <!-- 1. Hero Banner 区域 -->
+<% if (theme.banner && theme.banner.hero && theme.banner.hero.enable) { %>
 <div class="hero-banner">
     <%
         // 获取本地 banner 目录下的所有文件名列表
@@ -30,6 +31,7 @@
         <mdui-icon name="expand_more" class="hero-scroll-hint__icon"></mdui-icon>
     </div>
 </div>
+<% } %>
 
 <!-- 2. 主要内容区域 -->
 <div class="page-shell app-container page-shell--pad-index">
