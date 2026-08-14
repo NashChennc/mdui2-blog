@@ -55,12 +55,13 @@ theme: mdui2-blog
 
 | 优先级 | 来源 | 说明 |
 |--------|------|------|
-| 1 | `theme.xxx` | 主题 `_config.yml`（最高） |
-| 2 | `config.xxx` | 站点 `_config.yml` |
-| 3 | `__('key')` | i18n 多语言文本 |
-| 4 | 硬编码默认值 | 模板内的兜底值 |
+| 1 | `site.data` | 仅首页/分类页文案：站点 `source/_data` 中的 Markdown/HTML |
+| 2 | `theme.xxx` | 主题 `_config.yml` |
+| 3 | `config.xxx` | 站点 `_config.yml` |
+| 4 | `__('key')` | i18n 多语言文本 |
+| 5 | 硬编码默认值 | 模板内的兜底值 |
 
-**常见可跨级使用的字段**：`title`、`subtitle`、`author`、`google_analytics` 等同时在主题和站点配置中生效，主题优先。
+**常见可跨级使用的字段**：`title`、`subtitle`、`author`、`google_analytics` 等同时在主题和站点配置中生效，主题优先。`site.data` 的最高优先级只适用于首页和分类页内容。
 
 ---
 
@@ -159,6 +160,27 @@ sidebar_config:
 
 控制 `categories/:name/` 页面的展示（数字花园式卡片网格）。
 
+分类页文案存放在站点内容目录中，文件名必须与文章 front-matter 的分类名完全一致：
+
+```markdown
+<!-- source/_data/categories/笔记.md -->
+# 笔记 Notes
+
+记录我尚未完全理解的事物。
+```
+
+也可以改用同名 HTML 文件：
+
+```html
+<!-- source/_data/categories/笔记.html -->
+<h1>笔记 Notes</h1>
+<p>记录我尚未完全理解的事物。</p>
+```
+
+第一个一级标题作为页面标题，剩余内容放入现有 `.notes-subtitle` 区域。不要同时保留同名的 `.md` 和 `.html` 文件。
+
+以下主题配置仅在对应内容文件不存在时作为兼容回退：
+
 ```yaml
 category_page:
   lede: ""   # 全站分类页默认副标题；留空则尝试 i18n category_page_default_lede
@@ -243,17 +265,18 @@ footer:
 
 Hero 下方的主内容区，位于分类/标签芯片上方：
 
-```yaml
-index_page:
-  title: "生猛活海鲜大排档"    # 主标题，留空则用 config.title
-  lede: |                      # 副标题，支持 HTML
-    <span class="notes-subtitle__row">这是什么？白河豚？一刀剁了。</span>
-    <span class="notes-subtitle__row">这里主要用来堆放我的 <a href="/categories/笔记/">笔记</a></span>
+```markdown
+<!-- source/_data/home.md -->
+# 生猛活海鲜大排档
+
+这是什么？白河豚？一刀剁了。
+
+这里主要用来堆放我的 [笔记](/categories/笔记/)。
 ```
 
-- `title`：留空时回退到 `config.title`
-- `lede`：支持任意 HTML；留空则尝试 i18n `index_page_default_lede`
-- 用 `<span class="notes-subtitle__row">` 包裹可实现多行布局
+也可以写成 `source/_data/home.html`。第一个一级标题作为 `.notes-title`，其余 Markdown/HTML 放入 `.notes-subtitle`；每个 Markdown 段落沿用原来的多行间距。
+
+`index_page.title` 和 `index_page.lede` 仅在 `home.md` / `home.html` 都不存在时作为兼容回退；之后再回退到 `config.title` 和 i18n。
 
 ---
 

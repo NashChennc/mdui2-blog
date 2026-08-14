@@ -6,10 +6,8 @@
 <%
     var backlinks = post_backlinks(page);
     var backlinkTitle = __('post_backlinks_title');
-    var postTocHtml = page.toc !== false
-        ? toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 })
-        : '';
-    var hasPostToc = postTocHtml && String(postTocHtml).trim();
+    var postTocHtml = partial('partial/toc');
+    var hasPostToc = Boolean(postTocHtml && String(postTocHtml).trim());
 %>
 
 <div class="page-shell app-container">
@@ -58,17 +56,7 @@
                 <%- partial('partial/link') %>
             </mdui-card>
         </main>
-        <% if (hasPostToc) { %>
-        <aside class="page-sidebar page-sidebar--post sticky-sidebar" id="post-sidebar">
-            <nav class="post-toc-panel toc-full-height" aria-label="<%= __('toc') %>">
-                <div class="post-toc-inner">
-                    <div class="post-toc-scroll mdui-prose">
-                        <%- postTocHtml %>
-                    </div>
-                </div>
-            </nav>
-        </aside>
-        <% } %>
+        <%- partial('partial/toc-sidebar', { tocHtml: postTocHtml }) %>
     </div>
 </div>
 <div id="page-bottom" aria-hidden="true"></div>

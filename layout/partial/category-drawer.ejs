@@ -1,9 +1,6 @@
 <%
-  var drawerTocHtml = '';
-  if (page.layout === 'post' && page.toc !== false && page.content) {
-    drawerTocHtml = toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 });
-  }
-  var hasDrawerToc = drawerTocHtml && String(drawerTocHtml).trim();
+  var drawerTocHtml = partial('partial/toc');
+  var hasDrawerToc = Boolean(drawerTocHtml && String(drawerTocHtml).trim());
   var hasDrawerCategories = site.categories.length;
 %>
 

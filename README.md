@@ -133,8 +133,9 @@ Wiki Links：
 
 ## Notes
 
-- 主题配置优先于站点配置；为空时部分字段回退到 Hexo 根 `_config.yml` 或 i18n 文本。
-- `index_page.lede` 支持 HTML，适合站点 owner 自定义首页说明。
+- 首页/分类页以 `source/_data` 内容为先；其他设置仍由主题配置优先于站点配置，并在为空时回退到 Hexo 根 `_config.yml` 或 i18n 文本。
+- 首页文案存放在 `source/_data/home.md`（或 `home.html`），分类页文案存放在 `source/_data/categories/<分类名>.md`（或 `.html`）。第一个一级标题作为展示标题，其余内容沿用主题现有页头样式。
+- `_data` 内容文件不使用 post/page front-matter。
 - 文章内容本身仍由 Hexo Markdown renderer 负责清洗/渲染；公开站点不建议开启不可信用户投稿的原始 HTML。
 
 ## License

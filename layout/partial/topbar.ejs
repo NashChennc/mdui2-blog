@@ -1,9 +1,6 @@
 <%
-  var topbarTocHtml = '';
-  if (page.layout === 'post' && page.toc !== false && page.content) {
-    topbarTocHtml = toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 });
-  }
-  var hasTopbarTocDrawer = topbarTocHtml && String(topbarTocHtml).trim();
+  var topbarTocHtml = partial('partial/toc');
+  var hasTopbarTocDrawer = Boolean(topbarTocHtml && String(topbarTocHtml).trim());
   var hasTopbarCategories = site.categories.length;
   var hasTopbarDrawer = hasTopbarCategories || hasTopbarTocDrawer;
 %>

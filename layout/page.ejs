@@ -1,6 +1,16 @@
+<%
+  var pageTocHtml = partial('partial/toc');
+  var hasPageToc = Boolean(pageTocHtml && String(pageTocHtml).trim());
+%>
+
 <main class="page-shell app-container page-shell--pad-static-page">
-    <div class="mdui-prose page-page__prose">
-        <%- page.content %>
+    <div class="page-grid page-grid--post<%= hasPageToc ? '' : ' page-grid--single' %>">
+        <div class="page-main page-page__body">
+            <div class="mdui-prose page-page__prose">
+                <%- page.content %>
+            </div>
+        </div>
+        <%- partial('partial/toc-sidebar', { tocHtml: pageTocHtml }) %>
     </div>
 </main>
 <div id="page-bottom" aria-hidden="true"></div>

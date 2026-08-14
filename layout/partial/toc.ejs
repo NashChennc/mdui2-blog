@@ -1,0 +1,7 @@
+<%
+  var tocHtml = '';
+  if ((page.layout === 'post' || page.layout === 'page') && page.toc !== false && page.content) {
+    tocHtml = toc(page.content, { class: 'post-toc', list_number: false, max_depth: 3 });
+  }
+%>
+<%- tocHtml && String(tocHtml).trim() ? tocHtml : '' %>

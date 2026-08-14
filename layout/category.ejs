@@ -7,23 +7,27 @@
             <div class="category-index">
                 <%
                     var catName = page.category;
+                    var categoryContentKey = 'categories/' + catName;
+                    var categoryContentRaw = site.data && site.data[categoryContentKey];
+                    var hasCategoryContent = typeof categoryContentRaw === 'string' && categoryContentRaw.trim();
+                    var categoryContent = mdblog_data_content_page(hasCategoryContent ? categoryContentRaw : '');
                     var presets = (theme.category_page && theme.category_page.by_category) ? theme.category_page.by_category : {};
                     var preset = presets[catName];
-                    var displayTitle = catName;
-                    if (preset && preset.class_name) {
+                    var displayTitle = categoryContent.title || catName;
+                    if (!categoryContent.title && preset && preset.class_name) {
                         var _cn = String(preset.class_name).trim();
                         if (_cn) {
                             displayTitle = _cn;
                         }
                     }
-                    var categoryLede = '';
-                    if (preset && preset.class_description) {
+                    var categoryLede = hasCategoryContent ? categoryContent.body : '';
+                    if (!hasCategoryContent && preset && preset.class_description) {
                         categoryLede = String(preset.class_description).trim();
                     }
-                    if (!categoryLede && theme.category_page && theme.category_page.lede) {
+                    if (!hasCategoryContent && !categoryLede && theme.category_page && theme.category_page.lede) {
                         categoryLede = String(theme.category_page.lede).trim();
                     }
-                    if (!categoryLede) {
+                    if (!hasCategoryContent && !categoryLede) {
                         var _ledeI18n = __('category_page_default_lede');
                         if (_ledeI18n && _ledeI18n !== 'category_page_default_lede') {
                             categoryLede = String(_ledeI18n).trim();
@@ -33,7 +37,11 @@
                 <header class="notes-header">
                     <h1 class="notes-title"><%= displayTitle %><span class="notes-post-count"><%= page.posts.length %></span></h1>
                     <% if (categoryLede) { %>
+                    <% if (hasCategoryContent) { %>
+                    <div class="notes-subtitle"><%- categoryLede %></div>
+                    <% } else { %>
                     <p class="notes-subtitle"><%= categoryLede %></p>
+                    <% } %>
                     <% } %>
                 </header>
                 <%- partial('partial/activity-heatmap', { heatmapPosts: page.posts, heatmapScope: 'category' }) %>
